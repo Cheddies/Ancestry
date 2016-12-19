@@ -1,0 +1,10 @@
+<div class="helptext" id="helptext_particulars"><p class="top"><?php echo $partsHelptext;?></p></div>
+<div class="helptext" id="helptext_gro_ref"><p class="top"><?php echo $groHelptext;?></p></div>
+<div class="helptext" id="helptext_qtr_ref"><p class="top"><?php echo $qtrHelptext;?></p></div>
+<div class="helptext" id="helptext_country_ref"><p class="top"><?php echo $countryHelptext;?></p></div>
+<div class="helptext" id="helptext_no_of_certs"><p class="top"><?php echo $qtyHelptext;?></p></div>
+<div class="helptext" id="helptext_del_0"><p class="top"><?php echo $shippingHelp;?></div>
+<div class="helptext" id="helptext_del_add"><p class="top"><?php echo $delHelptext;?></p></div>
+<div class="helptext" id="helptext_bill_add"><p class="top"><?php echo $billHelptext;?></p></div>
+<div class="helptext" id="helptext_scan_and_send"><p class="top"><?php echo $scanHelptext;?></p></div>
+<div class="helptext" id="helptext_discount_code"><p class="top"><?php echo $discountHelptext;?></p></div>

@@ -1,0 +1,15 @@
+<?php
+//echo formInput('select','title','title','Title',$order['address']['title'],array('attr'=>array('class'=>'add_field'),'options'=>$titles,'disabled'=>$disableAddress,'required'=>!$disableAddress));
+echo formInput('text','forename','forename','Forename(s)',$order['order_header']['sfirstname'],array('attr'=>array('class'=>'add_field','maxlength'=>15),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('forename')));
+echo formInput('text','surname','surname','Surname',$order['order_header']['slastname'],array('attr'=>array('class'=>'add_field','maxlength'=>20),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('surname')));
+echo formInput('text','address_1','address_1','Address 1',$order['order_header']['saddress1'],array('attr'=>array('class'=>'add_field','maxlength'=>40),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('address_1')));
+echo formInput('text','address_2','address_2','Address 2',$order['order_header']['saddress2'],array('attr'=>array('class'=>'add_field noval','maxlength'=>40),'disabled'=>$disableAddress,'error'=>validationError('address_2')));
+echo formInput('text','town','town','Town',$order['order_header']['scity'],array('attr'=>array('class'=>'add_field','maxlength'=>20),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('town')));
+//echo formInput('text','county','county','County',$order['order_header']['sstate'],array('attr'=>array('class'=>'add_field'),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('county')));
+echo formInput('text','postcode','postcode','Postcode',$order['order_header']['szipcode'],array('attr'=>array('class'=>'add_field','maxlength'=>10),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('postcode')));
+echo formInput('select','country','country','Country',$order['order_header']['scountry'],array('attr'=>array('class'=>'add_field'),'options'=>$countries,'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('country')));
+echo formInput('text','email','email','Email',$order['order_header']['email'],array('attr'=>array('class'=>'add_field','maxlength'=>50),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('email')));
+echo formInput('text','tel','tel','Contact Telephone',$order['order_header']['phone'],array('attr'=>array('class'=>'add_field','maxlength'=>14),'disabled'=>$disableAddress,'required'=>!$disableAddress,'error'=>validationError('tel')));
+$addDifCheck = $order['billing_different'] ? true : false;
+echo formInput('checkbox','billing_different','billing_different','My billing address is different','1',array('attr'=>array('class'=>'add_field noval'),'disabled'=>$disableAddress,'checked'=>$addDifCheck));
+?>

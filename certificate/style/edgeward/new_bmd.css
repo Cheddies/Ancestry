@@ -1,0 +1,268 @@
+/*************************************************
+CSS document for ancestryshop.co.uk BMD checkout forms
+Created by Paul Smith of Edgeward (Edgeward.co.uk)
+
+*************************************************/
+
+/**** Reset ****/
+
+td,th,tr,thead,tfoot,tbody,caption,table,legend,label,form,fieldset,li,ul,ol,dd,dt,dl,var,tt,sup,sub,strong,strike,small,samp,s,q,kbd,ins,img,font,em,dfn,del,code,cite,big,address,acronym,abbr,a,pre,blockquote,p,h6,h5,h4,h3,h2,h1,iframe,object,applet,span,div,body,html{font-size:10px;font-weight:inherit;margin:0;padding:0;border:0;vertical-align:baseline}td,th,tr,thead,tfoot,tbody,caption,table,legend,label,form,fieldset,li,ul,ol,dd,dt,dl,var,tt,sup,sub,strong,strike,small,samp,s,q,kbd,ins,img,font,em,dfn,del,code,cite,big,address,acronym,abbr,a,pre,blockquote,p,h6,h5,h4,h3,h2,h1,iframe,object,applet,span,div,body,html,:focus{outline:0}body{line-height:1;color:black;background:white}ul,ol{list-style:none}table{border-collapse:separate;border-spacing:0}td,th,caption{text-align:left;font-weight:normal}q:after,q:before,blockquote:after,blockquote:before{content:""}q,blockquote{quotes:"" ""}html{height:100%;margin-bottom:1px}
+
+
+/**** LAYOUT STYLES ****/
+
+#container { 
+	margin:0 auto !important;
+	width:760px !important;
+	position:relative;
+}
+#content_wrapper { 
+	width: 738px; 
+	padding:0 10px; 
+	background: #fff; 
+	border-left: 1px solid #B8AC92; 
+	border-right: 1px solid #B8AC92; 
+	overflow:hidden;
+}
+#content_top { background:url(../../images/edgeward/bmd_header.png) no-repeat; height:10px; }
+#top_bar { width:760px; height:24px; background:#000;  } 
+#cust_service { margin-right:10px; float:right; font-size:12px; color:#D3D8CE; line-height:24px;}
+#basket_wrapper { position:relative; }
+div.col_a, div.col_b { display:inline; float:left; }
+div.col_a { width:410px; padding-right:20px; }
+div.fieldset_section div.col_a { width:388px; }
+div.col_b { width:308px; }
+div.del_option { 
+	width:286px; overflow:hidden; border-right:1px solid #B8AC92; border-left:1px solid #B8AC92; 
+	background: url(../../images/edgeward/del_option_bg.png) repeat-x #FBF6DA;
+	padding:0 10px;
+}
+div.del_option_top { background: url(../../images/edgeward/del_option_top.png) no-repeat #FBF6DA; height:10px; width:308px; }
+div.del_option_bottom { background: url(../../images/edgeward/del_option_btm.png) no-repeat #FBF6DA; height:10px; width:308px; }
+div.add_col { width:340px; display:inline; float:left; overflow:hidden;}
+.add_col_a { padding-right:10px;}
+.add_col_b { padding-left:10px;}
+.add_fields, #summary_cert_detail { width:auto; overflow:hidden; position:relative; }
+
+/**** FONTS ****/
+
+body { font-family: Tahoma, Geneva, Verdana, sans-serif; }
+p, li, a, label, table, h5, dt { font-size:11px; line-height:1.4em; color:#333;}
+a { color: #566C11; font-size:inherit; }
+a:hover { color:#789200; }
+h1.header { height: 65px; background:url(../../../images/layout/logo.png) no-repeat; text-indent:-9000px; }
+strong, span, em { font-size:inherit; font-style:inherit;}
+strong, em { font-weight:bold; }
+#g_footer em { font-weight:normal; }
+#footer p, #footer li, #footer a, #footer h5, .info_box p { font-size:11px; }
+dl.help_def dt { font-weight: bold; }
+dl.help_def dd { padding-bottom:14px; }
+.red { color:#8f2604;}
+h2 { font-family:Tahoma, Geneva, Verdana, sans-serif; color:#546C11; font-size:14px; font-weight:bold; display:block; position:relative; padding:0 0 10px 0;}
+form h2 { padding:0 20px 0 0; }
+legend { font-size:11px; font-weight:bold; padding-top:10px; }
+span.ast, div.checkbox span.optional { display:none;}
+span.optional { font-weight:normal; }
+#order_discount_total { padding-top:10px;}
+.cert_info_intro { padding:10px 0 5px 0;}
+ul.cert_info, #cert_choice { padding:0 0 10px 0;}
+ul.cert_info li { font-size:11px; list-style:disc inside;}
+.del_option p.note, .fieldset_section p, #order_summary_list li { font-size:11px; }
+#order_summary_list { padding-top:10px;}
+p.small { font-size:10px;}
+
+/**** Info Boxes ****/
+div.fieldset_border { 
+	border:1px solid #B8AC92; padding:10px; margin:10px 0;
+	-moz-border-radius:5px; -webkit-border-radius:5px; border-radius:5px; 
+}	
+div.fieldset_section {
+	border:1px solid #B8AC92; padding:10px;  width:716px; overflow:hidden;
+	border-top:0;
+	margin:0 0 10px 0;
+}
+h2.section_header, h2.section_sub_head { 
+	background:url(../../images/edgeward/new_bmd/section_header.png) no-repeat; height:26px; line-height:26px; padding:0 10px;
+	color:#fff; font-size:12px;
+}
+h2.section_closed { margin:0 0 10px 0; }
+h2.section_sub_head { background-position:0 -26px;}
+div.info_box { 
+	padding:10px; width:716px; border-left:1px solid #B8AC92; border-right:1px solid #B8AC92; background:#FFFEEA; 
+}
+h3.info { 
+	background:url('../../images/edgeward/new_bmd/info_box_top.png') no-repeat;
+	height:29px; line-height:29px; padding:0 0 0 30px;  
+	font-size:12px; color:#695E49; font-weight:bold;
+}
+div.info_box_btm { background:url('../../images/edgeward/new_bmd/info_box_btm.png') no-repeat; height:5px; margin-bottom:10px;  }
+
+/**** Forms ****/
+
+#container a.edit,#container a.edit_btn, #edit_cart,#container input.edit_btn { 
+    background:url(../../images/edgeward/small_button.png) no-repeat; 
+    display:block; 
+    height:19px; 
+    width:51px; 
+    line-height:17px; 
+    font-size:11px; 
+    color:#fff; 
+    text-decoration:none; 
+    text-align:center; 
+    border:0; 
+    padding-bottom:2px;
+    color:#fff;
+}
+#container a.edit, a.edit_btn, #edit_cart{ height:17px; }
+a.edit:hover, a.edit_btn:hover, #edit_cart:hover,#container input.edit_btn { background:url(../../images/edgeward/small_button.png) no-repeat 0 -19px; cursor:pointer;}
+.line_bottom { border-bottom:1px solid #B8AC92; padding-bottom:10px; }
+#del_total_wrapper { padding:5px 0 10px; }
+
+/* Form Input Elements */
+
+div.input { position:relative; overflow:auto; clear:both; }
+div.text input { width:180px;}
+div.text input:focus {background:#FFFEEA;}
+div.text input.numField { width:40px;}
+div.text input.short_field { width:90px;}
+/*div.input label { display: block; width: 310px; float:left; }*/
+form div.checktc label { width: 690px; float:right; display:inline; padding:0px 0 10px; font-weight:normal; } /* wide format for t&cs*/
+div.checktc input { float:left; display:inline; }
+div.input label.after { width:auto; display:inline;}
+/*div.button { width:720px; height:28px; padding:10px 0; position:relative;}
+input.img_btn { width:89px; height:28px; line-height:28px; padding-bottom:2px; background:url(../../images/edgeward/continue_btn.png) no-repeat; border:0; font-weight:bold; color:#FFF; position:absolute; right:10px; top:10px; }*/
+form input.btn_disabled { background:url(../../images/edgeward/continue_btn_dis.png) no-repeat; }
+input.img_btn:hover { cursor:pointer; }
+input.btn_disabled:hover  { cursor:default; }
+div.inline_radio label { display: inline; width: auto; float:none; }
+div.inline { overflow:auto; }
+div.inline label { width:auto; padding-right:10px; }
+#offer_code { margin-right:10px; }
+#container input.sec_small_btn { 
+	background:url(../../../images/edgeward/sec_small_button.png) no-repeat; border:0; color:#fff;
+	display:inline; float:left;
+	font-size:11px;
+	height:19px;
+	line-height:17px;
+	padding-bottom:2px;
+	text-align:center;
+	text-decoration:none;
+	width:51px;
+	margin-left:10px;
+	}
+#container input.sec_small_btn:hover { background-position:0 -19px; cursor:pointer;}
+#lookup_pcode, #lookup_b_pcode { position:absolute; left:100px; top:20px; font-size:12px;}
+
+/**** New BMD Forms *****/
+
+input.img_btn { width:89px; height:28px; line-height:28px; padding-bottom:2px; background:url(../../images/edgeward/continue_btn.png) no-repeat; border:0; font-weight:bold; color:#FFF;}
+/* Form Elements */
+div.input label { display: block; font-weight:bold; font-size:11px; }
+div.radio label, div.checkbox label {font-weight:normal;}
+div.del_option .radio label, div.del_option .checkbox label { display: inline; width: 235px; float:right; padding-top:2px; padding-right:25px;}
+div.radio input, div.checkbox input { display: inline; float:left;  }
+div.text input { border-top:1px solid #999; border-left:1px solid #999; border-bottom:1px solid #E7E7E7; border-right:1px solid #E7E7E7;background:#fff; vertical-align:top; float:left;}
+div.input, p.note { padding:5px 0 0 0 ; }
+fieldset.info { padding-bottom:10px; position:relative;}
+div.radio_option { clear:both; padding:2px 0; }
+div.input_flt { width:270px; float:left; display:inline; overflow:hidden; clear:both;}
+div.edit_btn_wrapper { clear:both; padding:20px 0 10px; position:relative;}
+div.button {  position:relative;}
+
+
+/* Validation errors */
+
+div.input label.error, div.input label.valid { display:block; position:relative; bottom:auto; right:auto;  width:auto; clear:both;}
+div.input label.error { background: url(../../images/edgeward/new_bmd/error_alert.png) no-repeat left; color:#843B22; padding:0 0 0 15px; }
+div.input label.valid { visibility:hidden; }
+div.error { background: none; }
+div.valid { background: none; }
+div.checktc label.error, div.checktc label.valid { display:block; width:auto; clear:both; float:none; margin-bottom:10px;} /* For T&C checkboxes */
+.alert { color:#B90221; }
+
+/* Help Text */
+
+a.help { display:block; position:absolute; right:5px; top:5px; z-index:10; background: url(../../images/edgeward/new_bmd/help_btn.png); height:14px; width:14px; text-indent:-9000px; }
+.add_fields a.help { right:10px; top:5px; }
+a.help:hover { cursor:pointer; background-position: 0 14px; }
+a.help_legend { top:1px;}
+div.fieldset .help_legend { right:16px; }
+div.helptext { display:none;}
+
+/* Tooltip */
+#tooltip_box { width:300px; position:absolute; display:none; z-index:100;}
+#tt_top, #tt_btm { width:300px; height:6px; background: url(../../images/edgeward/new_bmd/tooltip.png) no-repeat;}
+#tt_btm { height:18px; background-position:left bottom;}
+#tt_container { width:278px; background:#F1F4F5; border-left:1px solid #A6BCC6; border-right:1px solid #A6BCC6; padding:4px 10px;}
+#tt_container p { font-size:11px; }
+
+/**** PROGRESS BAR ****/
+
+#progress_bar { width:740px; height:35px; overflow:hidden; margin-bottom: 10px; background:url(../../images/edgeward/progress_sprite.jpg) no-repeat; }
+#progress_bar.stage2 { background-position:0 -35px; }
+#progress_bar.stage3 { background-position:0 -70px; }
+#progress_bar li { display:block; float:left; height:35px; text-indent:-9000px;}
+#progress_bar.one_page { background:url(../../images/edgeward/new_bmd/progress_1page.png) no-repeat; }
+
+/**** FOOTER ****/
+
+#page_footer { background:url(../../images/edgeward/footer.png) no-repeat; width:760px; height:5px;}
+
+/**** Ajax Loader ****/
+
+img.ajax_loader { position:absolute; top:5px; right:5px; display:none; }
+.button img.ajax_loader {  display:inline; right:auto; left:100px; }
+#ajax_loader { width:12px;height:12px;padding-left:10px; position:absolute; top:22px; left:50px;}
+
+/**** Misc ****/
+
+div.alert_flash, div.flash { padding:8px 8px 5px 35px; background: url(../../images/edgeward/alert.png) no-repeat 5px 3px #900; }
+div.alert_flash p, div.flash { color:#fff; font-size:12px; line-height:1.4em; }
+.clear { clear:both; }
+.floatleft { float:left; }
+.alignRight { text-align:right; }
+.hidden { display:none !important ; }
+#footer_logos { text-align:center;}
+#cert_img { float:right; margin:5px 0 0 10px; padding:1px; border:1px solid #B8AC92;}
+#header_faq { color:#999; position:absolute; top:25px; right:10px; background:url(../../images/edgeward/new_bmd/sec_server.png) no-repeat right center; padding:0 98px 0 0;}
+
+/**** Modal Window ****/
+
+#mod_wrapper, #window_trans { display:none; position:absolute;  }
+body > #window_trans { position:fixed;  } /* for modern browsers */
+#mod_wrapper { 
+	width:738px;  z-index:100; top:50%; left:50%;
+	padding:10px 10px 0 10px; margin-left:-369px; margin-top:-110px; border:1px solid black; background:#fff; overflow:hidden;
+}
+#window_trans { z-index:99; left:0; right:0; top:0; bottom:0; background:#000; }
+.trans { 
+	-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=50)"; /* ie8 supports both; this variant doesn't work if meta tag below used */
+	filter:alpha(opacity=50); /* for internet explorer <= 7, and 8 when <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" /> */
+	-moz-opacity:0.5; /* for older gecko browsers */
+	-khtml-opacity: 0.5; /* for older webkit browsers */
+	opacity: 0.5; /* CSS3 standard */
+}
+#terms_cancel { padding:0 20px; font-size:12px;}
+
+#newfoot {
+width: 698px;
+margin: 10px auto;
+padding: 10px;
+border: 1px solid #B8AC92;
+-webkit-border-radius: 5px;
+-moz-border-radius: 5px;
+border-radius: 5px;
+}
+.nf-secure {
+width: 220px;
+float: left;
+padding: 10px 0px;
+margin-right: 70px;
+}
+.nf-contact { width: 160px; float: left; }
+.nf-pay { width: 175px; float: right; }
+.nf-tel { font-size: 20px; line-height: 26px; color: #63771f; }
+.nf-paytitle {font-size: 16px; line-height: 22px; }
+#shop_footer { width: 700px; margin: 10px auto; text-align: center; }
+.tnclinks {color:#cecece; margin-top:10px; font-size: 10px;}
+.tnclinks a {color:#cecece;}

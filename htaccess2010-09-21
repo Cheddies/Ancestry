@@ -1,0 +1,27 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On      
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    # Old URLs to be redirected
+    RewriteRule ^BMD_cert(.*)$ page_redir.php?url=bmd_cert.php [NC,QSA,L]
+    RewriteRule ^birth_cert(.*)$ page_redir.php?url=birth_cert.php [NC,QSA,L]
+    RewriteRule ^marriage_cert(.*)$ page_redir.php?url=marriage_cert.php [NC,QSA,L]
+    RewriteRule ^death_cert(.*)$ page_redir.php?url=death_cert.php [NC,QSA,L]
+    RewriteRule ^surname_book(.*)$ page_redir.php?url=surname_book.php [NC,QSA,L]
+    RewriteRule ^surnamebook(.*)$ page_redir.php?url=surname_book.php [NC,QSA,L]
+    RewriteRule ^productdetail(.*)$ page_redir.php?url=productdetail$1 [NC,QSA,L] 
+    RewriteRule ^freeupgrade(.*)$ page_redir.php?url=freeupgrade [NC,QSA,L]    
+    RewriteRule ^ftm$ page_redir.php?url=ftm [NC,QSA,L] 
+    # End old URLs 
+    # PPC and email marketing URLs
+    RewriteRule ^software/family-tree-maker-2010-0_xid$ ppc/ftm2010_2 [NC,QSA,L] 
+    RewriteRule ^easter-offer$ ppc/ftm2010-easter-2010 [NC,QSA,L] 
+    RewriteRule ^easter-last-chance$ ppc/ftm2010-easter-2010-end [NC,QSA,L] 
+	RewriteRule ^bmdoffer(.*)$ ppc/bmd2010-discount.php?url=bmdoffer$1 [NC,QSA,L]
+  	# end PPC
+    RewriteRule ^products(.*)$ product_index.php?url=products$1 [NC,QSA,L]
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+	RewriteRule ^(.*)$ $1.php [L]
+    AddType application/x-javascript .js
+	AddType text/css .css
+</IfModule>

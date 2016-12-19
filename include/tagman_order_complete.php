@@ -1,0 +1,39 @@
+<?php
+if(
+isset($_GET['tm_prodprices']) &&
+isset($_GET['tm_prodrefs']) &&
+isset($_GET['tm_total']) &&
+isset($clean['niceodrnum'])
+)
+{
+?>
+<!-- TAGMAN IMPLAMENTATION -->
+<script type="text/javascript">
+	// your parameters
+	var tmParam = {};
+	tmParam["product_price"] = "<?php echo $_GET['tm_prodprices']?>";
+    tmParam["product_name"] = "<?php echo $_GET['tm_prodrefs']?>";
+    tmParam["levrev"] = "<?php echo $_GET['tm_total']?>";
+    //tmParam["levresdes"] = "[Enter Conversion description]";
+    tmParam["levordref"] = "<?php echo $clean['niceodrnum']?>";
+	tmParam["tmpageref"] = "1";
+	// our parameters
+	var tmOPV = 0;
+	// set only fire container at the start of a visit (value = visit length in minutes, 0 = all the time)
+	var tmPageId = 15;
+	// base container id
+	var tmAddJs = 1;
+	var tmBaseUrl = "https://pfa.levexis.com/ancestry/tagman.cgi";
+	// base url â€“ only specified for full TagMan Clients
+</script>
+<script type="text/javascript" src="https://sec.levexis.com/clientfiles/tmap/ancestry.js"></script>
+<script type="text/javascript" src="https://sec.levexis.com/js/tman.js"></script>
+<noscript>
+    <iframe src="https://sec.levexis.com/clientfiles/default/15/ancestry.htm"
+style="border:0px none ; width: 0px; height:
+0px;">
+    </iframe>
+</noscript>
+<?php 
+}
+?>

@@ -1,0 +1,31 @@
+<?php
+//set formtype
+$formtype = 'basket';
+require_once('include/edgeward/process_cart.inc.php');
+$pageTitle = 'Ancestry Shopping Basket | Order Details';
+?>
+<?php require_once('include/edgeward/header.inc.php'); ?>
+    <div id="content_top"></div>
+    <div id="content_wrapper">
+    
+        <ul id="progress_bar">
+        <li>Order Details</li>
+        <li>Delivery Address</li>
+        <li>Order Summary</li>
+        <li>Payment</li>
+        </ul>
+        
+        <div class="fieldset_border"> 
+        <?php require_once('include/edgeward/cart.inc.php'); ?>
+        </div><!--end .fieldset_border-->
+	  
+    </div><!--end #content_wrapper-->
+    <div id="page_footer"></div>
+    <div class="helptext" id="helptext_del_1"><p class="top"><?php echo $shippingHelp;?></div>
+    <div class="helptext" id="helptext_offer_code"><p class="top">Enter a special offer code to receive promotional discount.</p></div>
+    
+
+<?php require_once('include/footer_basket.php');
+require_once('include/footer.php'); ?>
+
+

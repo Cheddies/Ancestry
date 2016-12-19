@@ -1,0 +1,160 @@
+/*************************************************
+CSS document for ancestryshop.co.uk
+to be used with global reset document (reset.css), see http://meyerweb.com/eric/thoughts/2007/05/01/reset-reloaded/
+
+Production version
+
+Created by Paul Smith of Edgeward (Edgeward.co.uk)
+
+*************************************************/
+
+body { font-family: Verdana, Geneva, sans-serif; }
+
+/**** LAYOUT STYLES ****/
+
+#container { 
+	margin:0 auto !important;
+	width:760px !important;
+}
+#content_wrapper { 
+	width: 738px; 
+	padding:0 10px; 
+	background: #fff; 
+	border-left: 1px solid #B8AC92; 
+	border-right: 1px solid #B8AC92; 
+}
+#content_top { background:url(../../images/edgeward/bmd_header.png) no-repeat; height:10px; }
+#top_bar { width:760px; height:24px; background:#000;  } 
+#cust_service { margin-right:10px; float:right; font-size:12px; color:#D3D8CE; line-height:24px;}
+#basket_wrapper { position:relative; }
+
+/**** FONTS ****/
+
+p, li, a, label, legend, table, h5, dt { font-size:12px; line-height:18px; color:#333;}
+a { color: #566C11; }
+a:hover { color:#789200; }
+h1.header { height: 55px; background:url(../../images/edgeward/logo.png) no-repeat; text-indent:-9000px; }
+strong { font-weight:bold; }
+#footer p, #footer li, #footer a, #footer h5 { font-size:11px; }
+dl.help_def dt { font-weight: bold; }
+dl.help_def dd { padding-bottom:14px; }
+
+/**** FORM STYLES ****/
+
+div.fieldset { width:740px; overflow:hidden; position:relative; border-bottom:1px solid #7F8F49; }
+div.accordion span.legend:hover { cursor:pointer; }
+fieldset.box legend { *float:left; *margin-left: -7px; *margin-top:-8px; } /* ie hacks to align legend with fieldset */
+span.legend { 
+	display: block; 
+	width:730px; 
+	padding-left:10px; 
+	background: url(../../images/edgeward/fieldset_head_top.png) no-repeat; 
+	height: 26px; 
+	line-height:26px; 
+	color:#fff;
+	font-size:13px;
+	font-weight:700;
+}
+span.legend_top { background: url(../../images/edgeward/fieldset_head_top.png) no-repeat; }
+span.legend_mid { background: url(../../images/edgeward/fieldset_head_mid.png) repeat-x; }
+div.fieldset_bg, div.fieldset_border { background: url(../../images/edgeward/fieldset_border_mid.png) repeat-x #FAF6D7; border-left:1px solid #B8AC92; border-right:1px solid #B8AC92; }
+div.fieldset_bg, div.fieldset_border { position:relative; padding:10px; width:718px; }
+div.border_top { background: url(../../images/edgeward/fieldset_border_top.png) no-repeat 0 10px; height:15px; width:740px; }
+div.border_bottom { background: url(../../images/edgeward/fieldset_border_btm.png) no-repeat; height:15px; width:740px; }
+#container a.edit,#container a.edit_btn, #edit_cart,#container input.edit_btn { 
+    background:url(../../images/edgeward/small_button.png) no-repeat; 
+    display:block; 
+    height:19px; 
+    width:51px; 
+    line-height:17px; 
+    font-size:11px; 
+    color:#fff; 
+    text-decoration:none; 
+    text-align:center; 
+    border:0; 
+    padding-bottom:2px;
+    color:#fff;
+}
+#container a.edit, a.edit_btn, #edit_cart{ height:17px; }
+a.edit:hover, a.edit_btn:hover, #edit_cart:hover,#container input.edit_btn { background:url(../../images/edgeward/small_button.png) no-repeat 0 -19px; cursor:pointer;}
+.line_bottom { border-bottom:1px solid #B8AC92; padding-bottom:10px; }
+#del_total_wrapper { padding:5px 0 10px; }
+
+/* Input Elements */
+
+div.text input { border:1px solid #B9AD93; background:#fff; vertical-align:top; }
+div.input { position:relative; overflow:auto; }
+div.input, p.note { padding:5px 0 ; }
+div.input label { display: block; width: 310px; float:left; }
+div.checktc label { display: block; width: 715px; float:none; } /* wide format for t&cs*/
+div.checktc input { margin-left:310px; }
+div.input label.after { width:auto; display:inline;}
+div.button { width:720px; height:28px; padding:10px 0; position:relative;}
+input.img_btn { width:89px; height:28px; line-height:28px; padding-bottom:2px; background:url(../../images/edgeward/continue_btn.png) no-repeat; border:0; font-weight:bold; color:#FFF; position:absolute; right:10px; top:10px; }
+input.btn_disabled { background:url(../../images/edgeward/continue_btn_dis.png) no-repeat; }
+input.img_btn:hover { cursor:pointer; }
+input.btn_disabled:hover  { cursor:default; }
+div.inline_radio label { display: inline; width: auto; float:none; }
+div.inline { overflow:auto; }
+div.inline label { width:auto; padding-right:10px; }
+#offer_code { margin-right:10px; }
+
+
+/* Validation errors */
+
+div.input label.error, div.input label.valid { display:block; position:absolute; right:35px; bottom:5px; width:auto; padding-right:26px;}
+div.input label.error { background: url(../../images/edgeward/val_no.png) no-repeat right; color:#B90221; }
+div.input label.valid { background: url(../../images/edgeward/val_yes.png) no-repeat right; color:#354103; }
+div.error { background: #FFD7DB; }
+div.valid { background: #D4D7B0; }
+div.checktc label.error, div.checktc label.valid { display:block; width:auto; padding-right:26px; position:relative; right:0; bottom:0;} /* For T&C checkboxes */
+
+/* Help Text */
+
+a.help { display:block; position:absolute; right:5px; top:5px; z-index:10; background: url(../../images/edgeward/help_btn.png); height:22px; width:22px; text-indent:-9000px; }
+a.help_legend { top:1px;}
+div.fieldset .help_legend { right:16px; }
+a.help:hover { cursor:pointer; background: url(../../images/edgeward/help_btn.png) 0 22px; }
+div.helptext { background: url(../../images/edgeward/helptext_bg.png) bottom left; width:233px; display:none;}
+div.helptext p.top { background: url(../../images/edgeward/helptext_top.png) no-repeat; }
+div.helptext p { padding:8px 8px 8px 18px;  font-size:10px; line-height:14px;}
+span.help_btn { background:url(../../images/edgeward/help_btn.png) no-repeat; height:22px; width:22px; }
+
+/**** PROGRESS BAR ****/
+
+#progress_bar { width:740px; height:34px; overflow:hidden; margin-bottom: 10px; background:url(../../images/edgeward/progress_sprite.png) no-repeat; }
+#progress_bar.stage2 { background-position:0 -34px; }
+#progress_bar.stage3 { background-position:0 -68px; }
+#progress_bar li { display:block; float:left; height:34px; text-indent:-9000px;}
+
+/**** FOOTER ****/
+
+#page_footer { background:url(../../images/edgeward/footer.png) no-repeat; width:760px; height:5px;}
+
+/**** jQuery tooltip ****/
+
+#tooltip { background:#E48000; z-index:100; position:absolute; padding:3px; border:1px solid #8C4F00; font-size:10px; color:#fff;}
+
+/**** Ajax Loader ****/
+
+img.ajax_loader { position:absolute; top:5px; right:5px; display:none; }
+
+/**** Shopping Basket ****/
+
+table.shopping_basket { width:100%; }
+table.shopping_basket th, table.shopping_basket td { padding:3px; }
+table.shopping_basket th { font-weight:bold; padding:3px; }
+table.shopping_basket td, table.shopping_basket th { text-align:right; }
+input.line_qty { text-align:right; }
+tr.total td { font-weight:bold; }
+table.shopping_basket .item_name { text-align:left; }
+#order_total { font-weight:bold; padding-top:10px;}
+#continue_shopping { display:block; float:right; }
+
+/**** Misc ****/
+
+div.alert_flash { padding:5px 5px 5px 35px; background: url(../../images/edgeward/alert.png) no-repeat 5px 3px #900; }
+div.alert_flash p { color:#fff; }
+.clear { clear:both; }
+.floatleft { float:left; }
+.alignRight { text-align:right; }

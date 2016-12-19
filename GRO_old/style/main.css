@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+/*@import url("reset.css");*/
+/* not used reset as may conflict with ancestry css already in use */
+
+/* reset */
+#f-wrap * { margin:0; padding:0}
+
+#f-wrap {width: 684px;padding-top: 35px;position: relative;font-size:62.5%/* reset the font size*/}
+#f-wrap a { color:#97834e; text-decoration:underline}
+#f-wrap a:hover, #f-wrap a:focus {text-decoration: none}
+
+#f-header {height: 43px;background: url(../images/header_bkg.png) no-repeat 0px 0px;position: absolute;left: 0px;top: 6px;width:100%}
+#f-header h3 {padding: 0px 0px 0px 15px;font-size:2.0em;color: #fff;line-height:40px; font-family: "Trebuchet MS"}
+#f-header .tree-icon {position: absolute;top: -6px;right: 3px;}
+#f-header .adoption-icon {position: absolute;bottom: 0px;right: 25px;}
+#f-header .birth-icon {position: absolute;bottom: 5px;right: 30px;}
+#f-header .death-icon {position: absolute;bottom: 3px;right: 24px;}
+#f-header .marriage-icon {position: absolute;bottom: 0px;right: 34px;}
+#f-header .reg-icon {position: absolute;bottom: 0px;right: 33px;}
+
+#f-content {background: #eff2d7;border: 1px solid #b8b59a;padding: 33px 15px 50px;color: #5b5441;font-family: Verdana, Arial, Helvetica, sans-serif}
+#f-content  em { color:red;}
+#f-content .breadcrumb { margin-bottom:15px; font-size: 1.1em; font-weight:bold}
+#f-content .breadcrumb li {list-style: none;display: inline;padding-right: 5px;}
+#f-content .breadcrumb li a {margin-right: 5px;}
+
+#f-content .intro {margin-bottom:30px}
+#f-content .intro p {margin-bottom:15px; font-size: 1.1em; font-weight:bold}
+
+#f-content fieldset {border: none;font-weight:bold; padding-bottom:20px}
+#f-content legend {font-size:1.7em;margin-bottom:20px;color: #5b5441;}
+#f-content fieldset p.intro {font-size:1.3em;margin-bottom:15px;}
+#f-content fieldset p.note {font-size:1.1em;padding-top:7px;clear: both;}
+#f-content fieldset div {padding-bottom: 16px; width:100%; overflow:hidden}
+#f-content fieldset div label,
+#f-content fieldset div p.question  {float:left;display:block;width:300px;margin-right:10px;padding-right:10px;padding-top:4px; font-size:1.1em;}
+#f-content fieldset .checkbox {margin-top: 4px;}
+#f-content fieldset input { float:left}
+
+/*#f-content .container-1 input{width:215px;}*/
+#f-content .container-1 select{width:223px;}
+#f-content .container-1 input,
+#f-content .container-1 select,
+#f-content fieldset div.inside input {font-size:1.1em;padding:3px;border-top: 1px solid #999999;border-right: 1px solid #cbcbcb;border-bottom: 1px solid #cbcbcb;border-left: 1px solid #999999;}
+
+#f-content fieldset div div.inside {float:left;width:auto;margin-left:20px;padding-bottom: 0px;}
+#f-content fieldset div div.inside label { width:auto}
+#f-content fieldset div div.inside input { width:50px}
+
+#f-content fieldset div div.control-set {float:left;width:auto;padding-bottom: 0px;}
+#f-content fieldset div div.control-set label { width:auto; margin-left:10px}
+
+#f-content .buttons {padding: 30px 0 0 320px;height:28px}
+#f-content .buttons a {width: 96px;height:28px;background: url(../images/button_bkg.png);border:none;color:#FFFFFF;font: bold 15px "Trebuchet MS";line-height:28px;display: block;text-align:center;text-decoration:none;float:left;margin-right:10px; tran}

@@ -1,0 +1,804 @@
+<?php
+//IL addition
+require_once('include/commonfunctions.php');
+require_once('include/siteconstants.php');
+
+require_once('include/edgeward/database.inc.php');
+
+//require_once("include/edgeward/sessions.inc.php");
+//$sess = new SessionManager();
+//session_start();
+//end of IL addition
+
+//formInput function outputs a form field with related attributes, wrapper div etc
+function formInput($inputType,$name,$id,$label,$value=null,$options=array()){
+	/* Required:
+	$inputType = text, select, radio, checkbox
+	$name = element name
+	$id = element id
+	$label = label for text
+	Optional:
+	$value = starting value for the element
+	$options = hash array of options, see below
+	Valid options for the options array:
+	$options['attr'] = array - hash of html attributes for the input element. eg array('class'=>'someClass')
+	$options['options'] = array - hash of options for select elements eg array('optionDisplay'=>'optionValue')
+	$options['help'] = Text - Display ? help icon and text.
+	$options['checked'] = boolean - for radio or checkbox, whether it starts checked
+	$options['disabled'] = boolean - disable the input, prefix name and id with "d_"
+	$options['hidden'] = render a hidden field with name and value as above
+	$options['div'] = render the wrapper div
+		can be an array of properties eg array('id'=>'somthing')
+	$options['required'] = Appends " <strong>*</strong>" to the label	
+	$options['error'] = output a validation error if one is supplied
+	$options['optional'] = Appends "(optional)" to label
+	*/
+	
+	//set the defaults
+	$bolDisabled = isset($options['disabled']) ? $options['disabled'] : false;
+	$attribs = $options['attr'];
+	$bolChecked = isset($options['checked']) ? $options['checked'] : false;
+	$help = isset($options['help']) ? $options['help'] : '';
+	$div = isset($options['div']) ? $options['div'] : true;
+	$hidden = $inputType == 'hidden';
+	$div = $hidden ? false : $div;
+	$req = isset($options['required']) ? $options['required'] : false;
+	$error = isset($options['error']) ? $options['error'] : false;
+	if($req){
+		$label = $label.' <span class="ast">*</span>';
+	} elseif($options['optional']) {
+		$label = $label.' <span class="optional">(optional)</span>';
+	}
+	//if the field is disabled, prefix it
+	$fieldPrefix = $bolDisabled ? 'd_' : '';
+	$field = '';
+	if($label) $field .= "<label class=\"{$fieldPrefix}{$name}_label\" for=\"$fieldPrefix$name\">$label</label>\n";
+	//if its a select field
+	if($inputType == 'select'){		
+		$field .= "<select name=\"$fieldPrefix$name\" id=\"$id\"";
+		foreach($attribs as $k=>$v){
+			$field .= " $k=\"$v\"";
+		}
+		if($bolDisabled)  $field .= " disabled=\"disabled\"";
+		$field .= ">\n";
+		foreach($options['options'] as $k=>$v){
+			$selected = '';
+			if($value == $v) $selected = "selected=\"selected\" ";
+			$field .= "<option {$selected}value=\"$v\">$k</option>\n";
+		}
+		$field .= "</select>\n";
+	} else {
+		$field .= "<input name=\"$fieldPrefix$name\" type=\"$inputType\" id=\"$fieldPrefix$id\"";
+		if($value){
+			$field .= " value=\"$value\"";
+		}
+		foreach($attribs as $k=>$v){
+			$field .= " $k=\"$v\"";
+		}
+		if($bolChecked) $field .= " checked=\"checked\"";
+		if($bolDisabled)  $field .= " disabled=\"disabled\"";
+		$field .= "/>\n";		
+	}
+	$output = '';
+	if($div){ //if div wrapper require, output it
+		$divClass = '';
+		$divAttribs = '';
+		if($error) $divClass .= ' error';
+		if(is_array($div)){
+			foreach($div as $k=>$v){
+				if($k == 'class'){
+					$divClass .= " $v";
+				} else {
+					$divAttribs .= " $k=\"$v\"";
+				}				
+			}	
+		}
+		$output .= "<div class=\"input {$inputType}{$divClass}\"{$divAttribs}>\n";
+	}
+	$output .= $field;	
+	if($error) $output .= "<label for=\"$name\" class=\"error\">$error</label>\n";
+	//if($help) $output .= "<div class=\"help\" id=\"help_$id\" rev=\"$help\">?</div>\n";
+	if($help) {
+		$helpArray = split('\|',$help);
+		$helpUrl = $helpArray[0];
+		$helpLabel = isset($helpArray[1]) ? "{$helpArray[1]} Help" : "$label Help";
+		$output .= "<a class=\"help\" id=\"help_$id\" href=\"{$helpArray[0]}\" title=\"$helpLabel\">?</a>\n";
+	}
+	if($div) $output .= "</div>\n";
+	//if disabled, output a hidden field
+	if($bolDisabled){		
+		if($inputType == 'checkbox'){
+			if($bolChecked){
+				$output .= "<input type=\"hidden\" name=\"$name\" value=\"$value\" class=\"noval\"/>\n";
+			} else {
+				$output .= "<input type=\"hidden\" name=\"$name\" value=\"\" class=\"noval\"/>\n";
+			}
+		} elseif($inputType == 'radio'){
+			if($bolChecked){
+				$output .= "<input type=\"hidden\" name=\"$name\" value=\"$value\" class=\"noval\"/>\n";
+			}
+		} else {		
+			$output .= "<input type=\"hidden\" name=\"$name\" value=\"$value\" class=\"noval\"/>\n";
+		}
+	}	
+	return $output;	
+}
+
+/**
+ * Cleanse a string ready for database input
+ * @param object $string
+ * @param object $varName [optional]
+ * @return string
+ */
+function cleanString($string,$varName=null){
+	global $validation;
+	$special = array('!','&','*',"'","\\"); //array of characters to be stripped
+	$s = strip_tags($string); //first strip html and php tags	
+	$s = trim(str_replace($special,'',$s)); //remove specials and space at beginning and end
+	$s = htmlentities($s); //any other specials are turned into html entities
+	//truncate if validation maxlength is exceeded
+	if($varName){
+		if(isset($validation[$varName]['validation']['maxlength'])){
+			$s = strTruncate($s,$validation[$varName]['validation']['maxlength']);
+		}
+	}
+	return $s;
+}
+
+/**
+ * Sanitizes an array of data, return the clean array
+ * @param object $data
+ * @param object $acceptedKeys [optional]
+ * @return array
+ */
+function cleanData($data,$acceptedKeys = array()){
+	//used for cleaning POST and GET data
+	$cleanArray = array();
+	
+	foreach($data as $k => $v){
+		if(!empty($acceptedKeys)){
+			if(in_array($k,$acceptedKeys)) $cleanArray[$k] = cleanString($v);
+		} else {
+			$cleanArray[$k] = cleanString($v);
+		}
+	}
+	return $cleanArray;
+}
+
+/**
+ * Truncate a string to given length
+ * @param object $string
+ * @param object $maxLength
+ * @return string
+ */
+function strTruncate($string,$maxLength){
+	if(strlen($string) <= $maxLength){
+		return $string; 
+	} else {
+		return substr($string,0,$maxLength);
+	}
+}
+
+
+
+function sqlDate($dateString){
+	//converts dd/mm/yyyy or ddmmyyyy format dates to yyyy-mm-dd for sql input
+	if(!$dateString) return '';
+	if(stripos($dateString,'/')){
+		$dateArray = explode('/',$dateString);
+		$day = strlen($dateArray[0])<2 ? '0'.$dateArray[0] : $dateArray[0];
+		$month = strlen($dateArray[1])<2 ? '0'.$dateArray[1] : $dateArray[1];
+		$year = $dateArray[2];
+	} else {
+		$day = substr($dateString,0,2);
+		$month = substr($dateString,2,2);
+		$year = substr($dateString,4,4);
+	}
+	return "$year-$month-$day";
+}
+function ukDate($dateString){
+	//converts yyyy-mm-dd format dates to  dd/mm/yyyy
+	if(!$dateString) return '';
+	$dateArray = explode('-',$dateString);
+	$day = strlen($dateArray[2])<2 ? '0'.$dateArray[2] : $dateArray[2];
+	$month = strlen($dateArray[1])<2 ? '0'.$dateArray[1] : $dateArray[1];
+	$year = $dateArray[0];
+	return "$day/$month/$year";
+}
+
+/**
+ * Prints out debug information about given variable.
+ *
+ * @param boolean $var Variable to show debug information for.
+ * @param boolean $showHtml If set to true, the method prints the debug data in a screen-friendly way.
+ * @param boolean $showFrom If set to true, the method prints from where the function was called.
+ */
+function debug($var = false, $showHtml = false, $showFrom = true) {
+	if ($showFrom) {
+		$calledFrom = debug_backtrace();
+		echo '<strong>' . substr(str_replace(ROOT, '', $calledFrom[0]['file']), 1) . '</strong>';
+		echo ' (line <strong>' . $calledFrom[0]['line'] . '</strong>)';
+	}
+	echo "\n<pre class=\"debug\">\n";
+
+	$var = print_r($var, true);
+	if ($showHtml) {
+		$var = str_replace('<', '&lt;', str_replace('>', '&gt;', $var));
+	}
+	echo $var . "\n</pre>\n";
+}
+
+function viewGroFields($certType,$year){
+	//returns a comma separated list of fields to be shown on the cert_details page 
+	//depending on type of cert and year, follows GRO criteria
+	$viewFields = '';
+	if($year >=1837 && $year <=1983 ) {
+		$viewFields = 'GROI_year,GROI_quarter,GROI_district,GROI_volume_number,GROI_page_number';
+	} elseif($year >=1984 && $year <=1992 ) {
+		$viewFields = 'GROI_year,GROI_district,GROI_volume_number,GROI_page_number,GROI_reg_month,GROI_reg_year';
+	} elseif($year >=1993) {
+		$viewFields = 'GROI_year,GROI_district,GROI_reg_month,GROI_reg_year,GROI_district_number';
+		if($certType=='m'){
+			$viewFields .=',GROI_page_number';
+			if($year >=1994){
+				$viewFields .=',GROI_entry_number';
+			}
+		} elseif($certType=='b') {
+			$viewFields .=',GROI_reg_number';
+			$viewFields .=',GROI_entry_number';
+		} elseif($certType=='d') {
+			$viewFields .=',GROI_entry_number';
+			if($year ==1993){
+				$viewFields .=',GROI_reg_number';
+			}		
+		}
+	}
+	return $viewFields;
+}
+
+function curPageName() {
+	return substr($_SERVER['SCRIPT_NAME'],strrpos($_SERVER['SCRIPT_NAME'],'/')+1);
+}
+
+function bmdFaqPrices($countryCode,$curSymbol){
+	$countries = array();
+	$output = '';
+	openConn();
+	//get the shipping prices for the country from db
+	$sql = sprintf("SELECT s.code AS code, cast(s.code AS decimal) dis_order, s.price AS price, s.description AS description,s.notes AS notes,s.extra_copy_price as extra_copy_price FROM GRO_tbl_shipping AS s, GRO_country_shipping AS c WHERE s.code = c.shipping AND c.country = '%s'  ORDER BY dis_order;",
+			   mysql_real_escape_string($countryCode));
+	$shipData = sqlQuery($sql);		
+	$output .= "<ul>\n";
+	foreach($shipData as $d){	
+		$price = $curSymbol . number_format($d['price'],2);
+		$output .= "<li>{$d['description']}: {$price}{$shipNotes}.</li>\n";
+	}
+	
+	$extraPriceStd = $curSymbol . number_format($shipData[0]['extra_copy_price'],2);
+	$extraPriceExp = $curSymbol . number_format($shipData[1]['extra_copy_price'],2);
+	
+	$output .= "<li>Duplicate copies - Standard service {$extraPriceStd} each. Express service {$extraPriceExp} each.</li>\n";
+	$output .= "</ul>\n";
+	mysql_close();
+	$output .= "<p>Prices include cost of certificate, handling charge, P&amp;P and VAT (where applicable).</p>\n";
+	return $output;
+	
+}
+
+function currencySymbol($countryCode){
+	switch($countryCode){
+		case '001': return '$';
+		break;
+		case '012': return 'AU$';
+		break;	
+		case '034': return 'CA$';
+		break;		
+		default: return '&pound;';		
+	}
+}
+
+/**** VALIDATION ****/
+$maxYear = date("Y",mktime(0,0,0,date("m")-18,date("d"),date("Y")));
+$valYearMessage = "Enter a valid year (1837-$maxYear)";
+$valDayMessage = "Enter a valid day (01-31)";
+$valMonthMessage = "Enter a valid month (01-12)";
+$valReqYear = array('validation'=>array('required'=>true,'maxlength'=>4,'minlength'=>4,'int'=>true,'max'=>$maxYear,'min'=>1837),'messages'=>array('maxlength'=>$valYearMessage,'minlength'=>$valYearMessage,'int'=>$valYearMessage,'max'=>$valYearMessage,'min'=>$valYearMessage));
+$valYear = array('validation'=>array('maxlength'=>4,'minlength'=>4,'int'=>true,'max'=>$maxYear,'min'=>1837),'messages'=>array('maxlength'=>$valYearMessage,'minlength'=>$valYearMessage,'int'=>$valYearMessage,'max'=>$valYearMessage,'min'=>$valYearMessage));
+$valReq45 = array('validation'=>array('required'=>true,'maxlength'=>45),'messages'=>array('maxlength'=>'Maximum 45 characters.'));
+$valMarriageNames = array('validation'=>array('required'=>true,'maxlength'=>45),'messages'=>array('maxlength'=>'Maximum 45 characters.'),'depends'=>array('marriage_names'=>0));
+$valReq45Billing = array('validation'=>array('required'=>true,'maxlength'=>45),'messages'=>array('maxlength'=>'Maximum 45 characters.'),'depends'=>array('billing_different'=>'1'));
+$val45 = array('validation'=>array('maxlength'=>45),'messages'=>array('maxlength'=>'Maximum 45 characters.'));
+$valReqDay = array('validation'=>array('required'=>true,'maxlength'=>2,'int'=>true,'min'=>1,'max'=>31),'messages'=>array('maxlength'=>$valDayMessage,'minlength'=>$valDayMessage,'int'=>$valDayMessage,'max'=>$valDayMessage,'min'=>$valDayMessage));
+$valReqMonth = array('validation'=>array('required'=>true,'maxlength'=>2,'int'=>true,'min'=>1,'max'=>12),'messages'=>array('maxlength'=>$valMonthMessage,'minlength'=>$valMonthMessage,'int'=>$valMonthMessage,'max'=>$valMonthMessage,'min'=>$valMonthMessage));
+$valDay = array('validation'=>array('maxlength'=>2,'int'=>true,'min'=>1,'max'=>31),'messages'=>array('maxlength'=>$valDayMessage,'minlength'=>$valDayMessage,'int'=>$valDayMessage,'max'=>$valDayMessage,'min'=>$valDayMessage));
+$valMonth = array('validation'=>array('maxlength'=>2,'int'=>true,'min'=>1,'max'=>12),'messages'=>array('maxlength'=>$valMonthMessage,'minlength'=>$valMonthMessage,'int'=>$valMonthMessage,'max'=>$valMonthMessage,'min'=>$valMonthMessage));
+$valQarter = array('validation'=>array('required'=>true,'maxlength'=>2,'minlength'=>1,'int'=>true,'min'=>1,'max'=>4));
+$valReqTel = array('validation'=>array('required'=>true,'phone'=>true,'maxlength'=>14),'messages'=>array('maxlength'=>'Maximum 14 characters.'));
+$valTel = array('validation'=>array('maxlength'=>14),'messages'=>array('maxlength'=>'Maximum 14 characters.'));
+$titleValidation = $valReq45;
+$countyValidation = $valReq45;
+$telValidation = $_SESSION['cert']['country'] == '001' ? $valTel : $valReqTel; //US does not need tel
+//which country determines some validation
+switch ($_SESSION['cert']['address']['country']) {
+    case '012': //australia
+        $pCodeValidation = array('validation'=>array('maxlength'=>10,'auspostcode'=>true),'messages'=>array('maxlength'=>'Maximum 10 characters.'));
+        break;
+	case '133': //nz
+        $pCodeValidation = array('validation'=>array('maxlength'=>4,'nzpostcode'=>true),'messages'=>array('maxlength'=>'Maximum 4 characters.'));
+		$countyValidation = $val45;
+		$countyValidation_b = $val45;
+        break;
+    case '001': //us
+        $pCodeValidation = array('validation'=>array('maxlength'=>10,'uspostcode'=>true),'messages'=>array('maxlength'=>'Maximum 10 characters.'));
+		$titleValidation = $val45;
+		$titleValidation_b = $val45;
+        break;
+	case '034': //canada
+        $pCodeValidation = array('validation'=>array('maxlength'=>10,'canadapostcode'=>true),'messages'=>array('maxlength'=>'Maximum 10 characters.'));
+        break;
+    default: //UK
+        $pCodeValidation = array('validation'=>array('required'=>true,'maxlength'=>10,'ukpostcode'=>true),'messages'=>array('maxlength'=>'Maximum 10 characters.'));
+        break;
+}
+
+//addition to $pCodeValidation for billing address validation
+$b_pCodeValidation=array_merge($pCodeValidation,array('depends'=>array('billing_different'=>'1')));
+
+
+$validation = array(
+				/* Data from search */
+				'yearReg'=>$valYear,
+				'monthReg'=>$valMonth,
+				'qReg'=>$valQarter,
+				'district'=>$val45,
+				'volume'=>$val45,
+				'page'=>array('validation'=>array('required'=>true,'int'=>true,'min'=>1,'maxlength'=>11)),
+				'surname'=>$val45,
+				'given'=>$val45,
+				'by'=>$valYear,
+				'bd'=>$valDay,
+				'bm'=>$valMonth,
+				'bp'=>$val45,
+				'fatherS'=>$val45,
+				'fatherG'=>$val45,
+				'motherS'=>$val45,
+				'motherG'=>$val45,
+				'age'=>array('validation'=>array('int'=>true,'max'=>150,'maxlength'=>11)),
+				/*GRO info*/
+				'GROI_quarter'=>$valQarter,
+				'GROI_district'=>$valReq45,
+				'GROI_volume_number'=>$valReq45,
+				'GROI_page_number'=>array('validation'=>array('required'=>true,'int'=>true,'min'=>1,'maxlength'=>11),'messages'=>array('maxlength'=>'Maximum 11 characters.','min'=>'Minimum 1.')),
+				'GROI_reg_month'=>array('validation'=>array('required'=>true,'maxlength'=>2),'messages'=>array('maxlength'=>'Maximum 2 characters.')),
+				'GROI_reg_year'=>$valReqYear,
+				'GROI_year'=>$valYear,
+				'GROI_reg_number'=>$valReq45,
+				'GROI_entry_number'=>array('validation'=>array('required'=>true,'int'=>true,'min'=>1,'maxlength'=>11)),
+				'GROI_district_number'=>$valReq45,
+				/*birth cert*/
+				'birth_surname'=>$valReq45,
+				'birth_forename'=>$valReq45,
+				'birth_year'=>$valReqYear,
+				/* Death cert */
+				'death_surname'=>$valReq45,
+				'death_forename'=>$valReq45,
+				'death_year'=>$valReqYear,
+				'death_age'=>array('validation'=>array('int'=>true,'min'=>0,'maxlength'=>11),'messages'=>array('maxlength'=>'Maximum 11 characters.','min'=>'Minimum 0.')),
+				/* Marriage cert */
+				'marriage_year'=>$valReqYear,
+				'marriage_man_surname'=>$valMarriageNames,
+				'marriage_man_forename'=>$valMarriageNames,
+				'marriage_woman_forename'=>$valMarriageNames,
+				'marriage_woman_surname'=>$valMarriageNames,
+				/* Address */
+				'title'=>$titleValidation,
+				'forename'=>$valReq45,
+				'surname'=>$valReq45,
+				'house_no'=>$valReq45,
+				'street_name'=>$valReq45,
+				'address_1'=>$valReq45,
+				'address_2'=>$val45,
+				'town'=>$valReq45,
+				'county'=>$countyValidation,
+				'country'=>array('validation'=>array('required'=>true)),
+				'postcode'=>$pCodeValidation,
+				'email'=>array('validation'=>array('required'=>true,'email'=>true,'maxlength'=>50),'messages'=>array('maxlength'=>'Maximum 50 characters.')),
+				'tel'=>$telValidation,
+				'b_title'=>$titleValidation_b,
+				'b_forename'=>$valReq45Billing,
+				'b_surname'=>$valReq45Billing,
+				'b_house_no'=>$valReq45Billing,
+				'b_street_name'=>$valReq45Billing,
+				'b_address_1'=>$valReq45Billing,
+				'b_address_2'=>array('validation'=>array('maxlength'=>45),'messages'=>array('maxlength'=>'Maximum 45 characters.'),'depends'=>array('billing_different'=>'1')),
+				'b_town'=>$valReq45Billing,
+				'b_county'=>$countyValidation_b,
+				'b_country'=>array('validation'=>array('required'=>true),'depends'=>array('billing_different'=>'1')),
+				'b_postcode'=>$b_pCodeValidation,
+					);
+
+
+
+$defaultMessages = array(
+					'required'=>'This field is required.',
+					'email'=>'Invalid email address.',
+					'number'=>'Must be a number.',
+					'phone'=>'Invalid phone number.',
+					'maxlength'=>'Too many characters.',
+					'minlength'=>'Too few characters.',
+					'int'=>'Must be a whole number.',
+					'max'=>'Number is too high.',
+					'min'=>'Number is too low.',
+					'ukpostcode'=>'Enter a valid UK postcode.',
+					'auspostcode'=>'Enter a valid postcode.',
+					'canadapostcode'=>'Enter a valid postcode.',
+					'uspostcode'=>'Enter a valid Zip Code.',
+					'nzpostcode'=>'Enter a valid Post Code.'
+					);
+
+function checkValidation($postData){
+	//returns an array of invalid fields
+	global $validation;
+	
+	$invalidFields = array();
+	
+	foreach($postData as $k=>$v){
+		//if validation exists for this field, test it
+		if(array_key_exists($k,$validation)){
+			$doValidationCheck = true;
+			if(isset($validation[$k]['depends'])){
+				//get depends criteria
+				$depends = $validation[$k]['depends'];
+				foreach($depends as $dk =>$dv){
+					$doValidationCheck = ($postData[$dk] == $dv); 
+					if(!$doValidationCheck) break;
+				}
+			}
+			//test the validation criteria
+			foreach($validation[$k]['validation'] as $critria =>$match){
+				//if required and not valid, add it to the invalid fields array
+				if($critria == 'required'){
+					if($doValidationCheck && strlen($v) <1){
+						if(!validationTest($v,$critria,$match)) $invalidFields[$k][$critria] = 1;
+					}
+				} else {
+					if(!validationTest($v,$critria,$match)) $invalidFields[$k][$critria] = 1;
+				}
+			}			
+		}
+	}
+	return $invalidFields;
+}
+
+function validationTest($value,$criteria,$match){
+	//returns true if value passes validation or false
+	switch (strtolower($criteria)) {
+		case 'required':
+			if(strlen(trim($value)) ==0) return false;
+			break;
+		case 'email':
+			return validateEmail($value);
+			break;
+		case 'number':
+			return is_numeric($value);
+			break;
+		case 'phone':
+			return ctype_digit(str_replace(' ','',$value));
+			break;
+		case 'maxlength':
+			return strlen($value) <= $match;
+			break;
+		case 'minlength':
+			return strlen($value) >= $match;
+			break;
+		case 'int':
+			return ctype_digit($value);
+			break;
+		case 'min':
+			return is_numeric($value) ? ($value >=$match) : false;
+			break;
+		case 'max':
+			return is_numeric($value) ? ($value <=$match) : false;
+			break;
+		case 'ukpostcode':
+			return ereg('^([Gg][Ii][Rr] 0[Aa]{2})|((([A-Za-z][0-9]{1,2})|(([A-Za-z][A-Ha-hJ-Yj-y][0-9]{1,2})|(([A-Za-z][0-9][A-Za-z])|([A-Za-z][A-Ha-hJ-Yj-y][0-9]?[A-Za-z])))) {0,1}[0-9][A-Za-z]{2})$',$value);
+			break;
+		case 'auspostcode':
+			return ereg('^([0-9]{4})$',$value);
+			break;
+		case 'nzpostcode':
+			return ereg('^([0-9]{4})$',$value);
+			break;
+		case 'uspostcode':
+			return ereg('^[0-9]{5}([- /]?[0-9]{4})?$',$value);
+			break;	
+		case 'canadapostcode':
+			return true; // ereg('^[ABCEGHJKLMNPRSTVXYabceghjklmnprstvxy]{1}\d{1}[A-Za-z]{1} *\d{1}[A-Za-z]{1}\d{1}$',$value);
+			break;	
+	}
+	return true;
+}
+
+function validationError($fieldName){
+	//returns a validation error message or false
+	global $validation, $invalidFields, $defaultMessages;
+	if(!isset($invalidFields)) return false;
+	//if the field exists in invalid fields, get first message
+	if(array_key_exists($fieldName,$invalidFields)){
+		$keys = array_keys($invalidFields[$fieldName]);
+		//if custom message
+		if(isset($validation[$fieldName]['messages'][$keys[0]])){
+			return $validation[$fieldName]['messages'][$keys[0]];
+		} elseif(isset($defaultMessages[$keys[0]])){ //else if default exists
+			return $defaultMessages[$keys[0]];
+		} else {
+		  return false;	
+		}
+	}
+}
+
+//IL chane
+/*
+function validateEmail($email) {
+	// check that there's one @ symbol, and that the lengths are right
+	if (!ereg("^[^@]{1,64}@[^@]{1,255}$", $email)) {
+		// Email invalid because wrong number of characters in one section, or wrong number of @ symbols.
+		return false;
+	}
+	// Split it into sections
+	$email_array = explode("@", $email);
+	$local_array = explode(".", $email_array[0]);
+	for ($i = 0; $i < sizeof($local_array); $i++) {
+		if (!ereg("^(([A-Za-z0-9!#$%&'*+/=?^_`{|}~-][A-Za-z0-9!#$%&'*+/=?^_`{|}~\.-]{0,63})|(\"[^(\\|\")]{0,62}\"))$", $local_array[$i])) {
+			return false;
+		}
+	}
+	if (!ereg("^\[?[0-9\.]+\]?$", $email_array[1])) { // Check if domain is IP. If not, it should be valid domain name
+		$domain_array = explode(".", $email_array[1]);
+		if (sizeof($domain_array) < 2) {
+			return false; // Not enough parts to domain
+		}
+		for ($i = 0; $i < sizeof($domain_array); $i++) {
+			if (!ereg("^(([A-Za-z0-9][A-Za-z0-9-]{0,61}[A-Za-z0-9])|([A-Za-z0-9]+))$", $domain_array[$i])) {
+				return false;
+			}
+		}
+	}
+	return true;
+}*/
+
+// Global variables
+
+$tableCertTypes = array('m'=>'2','d'=>'3','b'=>'1'); //for sql table gro_certificate_ordered
+$certTypes = array('m'=>'Marriage','d'=>'Death','b'=>'Birth');
+$months = array('month...'=>'','1 - Jan'=>'01','2 - Feb'=>'02','3 - Mar'=>'03','4 - Apr'=>'04','5 - May'=>'05','6 - Jun'=>'06','7 - Jul'=>'07',
+	'8 - Aug'=>'08','9 - Sep'=>'09','10 - Oct'=>'10','11 - Nov'=>'11','12 - Dec'=>'12');
+$daysOfMonth = array('dd'=>'');
+for ($i = 1; $i <= 31; $i++) {
+	$day = sprintf("%02d",$i);
+	$daysOfMonth[$day] = $day;
+}
+$quarters = array('Select...'=>'','1'=>'1','2'=>'2','3'=>'3','4'=>'4');
+$titles = array('Select...'=>'','Mr'=>'Mr','Ms'=>'Ms','Mrs'=>'Mrs','Miss'=>'Miss');
+$addressFields = array('title',
+					   'forename',
+					   'surname',
+					   'address_1',
+					   'address_2',
+					   'town',
+					   'county',
+					   'postcode',
+					   'email',
+					   'tel',
+					   'b_forename',
+					   'b_surname',
+					   'b_address_1',
+					   'b_address_2',
+					   'b_town',
+					   'b_county',
+					   'b_postcode',
+					   'billing_different'					   
+					   );
+$partFields = array('birth_surname',
+					'birth_forename',
+					'birth_year',
+					'birth_place',
+					'marriage_year',
+					'marriage_man_surname',
+					'marriage_man_forename',
+					'marriage_woman_surname',
+					'marriage_woman_forename',
+					'death_surname',
+					'death_forename',
+					'death_year',
+					'death_date',
+					'death_relate',
+					'death_age',
+					'father_surname',
+					'father_forename',
+					'mother_surname',
+					'mother_forename'				
+					);
+$groFields = array('GROI_year',
+					'GROI_quarter',
+					'GROI_district',
+					'GROI_volume_number',
+					'GROI_page_number',
+					'GROI_reg_month',
+					'GROI_reg_year'
+					);
+$delFields = array('delivery_method',
+					'no_of_certs'
+					);
+
+/**
+ * Returns array of shipping information
+ * @param string $countryCode
+ * @return array
+ */
+function getShippingInfo($countryCode){
+	$countries = array();
+	$limit = $countryCode == '073' ? 2 : 4;
+	openConn();
+	$sql = sprintf("SELECT s.code AS code, cast(s.code AS decimal) dis_order, s.price AS price, s.description AS description,s.notes AS notes,s.extra_copy_price as extra_copy_price FROM GRO_tbl_shipping AS s, GRO_country_shipping AS c WHERE s.code = c.shipping AND c.country = '%s'  ORDER BY dis_order ASC LIMIT %s;",
+				   mysql_real_escape_string($countryCode),$limit);
+	$shipData = sqlQuery($sql);
+	mysql_close();
+	return $shipData;
+}
+/*
+// version with scan and send price 
+function getShippingInfo($countryCode){
+	$countries = array();
+	$limit = $countryCode == '073' ? 2 : 4;
+	openConn();
+	$sql = sprintf("SELECT s.code AS code, cast(s.code AS decimal) dis_order, s.price AS price, s.description AS description,s.notes AS notes,s.extra_copy_price as extra_copy_price, s.scan_and_send_price as scan_and_send_price FROM GRO_tbl_shipping AS s, GRO_country_shipping AS c WHERE s.code = c.shipping AND c.country = '%s'  ORDER BY dis_order DESC LIMIT %s;",
+				   mysql_real_escape_string($countryCode),$limit);
+	$shipData = sqlQuery($sql);
+	mysql_close();
+	return $shipData;
+}
+*/
+
+/**
+ * Gets the shipping cost of specified shipping code
+ * @param string $delMethod
+ * @return 
+ */
+function getGroShippingCost($delMethod){
+	openConn();
+	$sql = sprintf("SELECT price FROM GRO_tbl_shipping WHERE code = '%s' LIMIT 1;",
+				   mysql_real_escape_string($delMethod));
+	$data = sqlQuery($sql);
+	$cost = !empty($data) ? $data[0]['price'] : 0;
+	mysql_close();
+	return $cost;
+}
+
+/**
+ * Returns a layout set number
+ * from session or randomly
+ */
+function layoutSet($setNumber = null){
+//	$layoutSet = 1;
+//	if($setNumber >=1 && $setNumber <=3){
+//		$layoutSet = $setNumber;
+//	} else {
+//		if(isset($_COOKIE['layout.set']) && !empty($_COOKIE['layout.set'])){
+//			$layoutSet = $_COOKIE['layout.set'];
+//		} elseif(isset($_SESSION['layout']) && !empty($_SESSION['layout'])){
+//			$layoutSet = $_SESSION['layout']['set'];
+//		} else {
+//			$layoutSet = rand(1, 3);
+//		}
+//	}
+//	
+//	$suffix = '_' . $layoutSet;
+//	if($layoutSet <2) $suffix = '';	
+//	$layout = array('set'=>$layoutSet,'suffix'=>$suffix);
+//	$_SESSION['layout'] = $layout;
+//	//update the cookie
+//	updateCookie('layout.set',$layout['set']);
+//	
+//	return $layout;
+    return 2;
+}
+
+/**
+ * Override token and store agaisnt order in db
+ * returns the new token
+ * @return string
+ */
+function updateSessionToken(){
+	$token=UniqueToken();
+	$_SESSION['token']=$token;
+	$_SESSION['token_time']=time();
+	
+	openConn();
+	
+	$mysql=array();
+	$mysql['token']=mysql_real_escape_string($_SESSION['token']);
+	$mysql['token_time']=mysql_real_escape_string($_SESSION['token_time']);
+	$mysql['session_id']=mysql_real_escape_string(session_id());
+	
+	$query="UPDATE GRO_orders SET token='{$mysql['token']}',token_time='{$mysql['token_time']}' WHERE order_number='{$mysql['session_id']}'";
+	$res = mysql_query($query);
+	return $token;
+
+}
+
+/**
+ * Generates a new random token key
+ * and assigns it to $_SESSION['token']
+ * returns the new token
+ * @return string
+ */
+function setNewToken(){
+	// Unset the token, so that it cannot be used again
+	unset($_SESSION['token']);
+	//gen new token
+	$token = md5(uniqid(rand(), true));
+	$_SESSION['token'] = $token;
+	return $token;
+}
+
+/**
+ * Set a cookie, expire default 2 years
+ * @param object $name
+ * @param object $value
+ * @param object $expire [optional]
+ * @return 
+ */
+function updateCookie($name,$value,$expire=''){
+	$hour = 3600;
+	$day = $hour * 24;
+	$week = $day * 7;
+	$year = $day *365;
+	$exp = $expire ? $expire : time()+($year*2);
+	setcookie($name, $value, $exp, '/'); 
+}
+
+function getCertInfo($certType){
+	$certInfo = array(
+		'marriage'=>array('The date that the marriage took place.','The bride and groom’s full names.','Their ages (Please note: age given is as stated by bride/groom may not be accurate).',
+		'Status at marriage. i.e. widowed, divorced or single.','Their profession.','Their residence.','The bride and groom’s fathers’ names.','The bride and groom’s fathers’ occupations.',
+		'Names of witnesses.'),
+		'death'=>array('When and where a person died.','Their age.','Their occupation.','The cause of death.','Details of the informant.'),
+		'birth'=>array('When and where a person was born.',"Father's name (where acknowledged).","Mother's name.","Father's occupation.")
+	);
+	if(!isset($certInfo[$certType])) return '';
+	
+	$output = "<p class=\"cert_info_intro\"><strong>What you'll find on this certificate:</strong></p>\n";
+	$output .= "<img src=\"images/edgeward/new_bmd/env_{$certType}.png\" id=\"cert_img\"/>";
+	$output .= "<ul class=\"cert_info\">\n";
+	foreach($certInfo[$certType] as $info){
+		$output .= "<li>{$info}</li>\n";
+	}
+	$output .= "</ul>\n";
+	return $output;
+}
+
+/**
+ * tests if request was made via javascript ajax call
+ * returns true if its ajax or false if not
+ * @return boolean
+ */
+function isAjaxRequest(){
+	if(!empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest') return true;
+	return false;
+}
+
+/**
+ * function to create hashed string for secure trading
+ * @param object $id
+ * @param object $password
+ * @param object $currency
+ * @param object $amount
+ * @return sting
+ */
+function securityHash($id,$password,$currency,$amount){
+	return md5($id . strtoupper($currency) . $amount . $password);
+}
+
+
+?>

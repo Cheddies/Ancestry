@@ -1,0 +1,245 @@
+/**** Reset ****/
+
+td,th,tr,thead,tfoot,tbody,caption,table,legend,label,form,fieldset,li,ul,ol,dd,dt,dl,var,tt,sup,sub,strong,strike,small,samp,s,q,kbd,ins,img,font,em,dfn,del,code,cite,big,address,acronym,abbr,a,pre,blockquote,p,h6,h5,h4,h3,h2,h1,iframe,object,applet,span,div,body,html{font-size:10px;font-weight:inherit;margin:0;padding:0;border:0;vertical-align:baseline}td,th,tr,thead,tfoot,tbody,caption,table,legend,label,form,fieldset,li,ul,ol,dd,dt,dl,var,tt,sup,sub,strong,strike,small,samp,s,q,kbd,ins,img,font,em,dfn,del,code,cite,big,address,acronym,abbr,a,pre,blockquote,p,h6,h5,h4,h3,h2,h1,iframe,object,applet,span,div,body,html,:focus{outline:0}body{line-height:1;color:black;background:white}ul,ol{list-style:none}table{border-collapse:separate;border-spacing:0}td,th,caption{text-align:left;font-weight:normal}q:after,q:before,blockquote:after,blockquote:before{content:""}q,blockquote{quotes:"" ""}html{height:100%;margin-bottom:1px}
+
+
+/**** Layout ****/
+
+#container { width:980px; margin:0 auto; position:relative;}
+#logo { background:url('../images/layout/logo.png') no-repeat; width:357px; height:57px; text-indent:-9000px;}
+#intro_content {  height:275px; padding:0 540px 0 20px; }
+.ftm #intro_content {  height:415px;}
+.ftm2011 #intro_content {  height:380px;}
+.ftm_mac #intro_content {  height:335px;}
+#main_content { padding:0 10px; margin-top:-1px;}
+#content_wrapper { background:url('../images/promo/bmd_disc_header.jpg') no-repeat;}
+#content_wrapper.std_page { background:url('../images/promo/bmd_disc_header2.jpg') no-repeat;}
+#content_wrapper.ftm2010_2 { background:url('../images/promo/ftm2010/ftm2010_2_header.jpg') no-repeat right top; border-top:1px solid #678116;}
+#content_wrapper.ftm2011 { background:url('../images/promo/ftm2011/header_img.jpg') no-repeat right top; border-top:1px solid #678116;}
+#content_wrapper.ftm_mac { background:url('../images/promo/ftm2011_mac/header_image.jpg') no-repeat right top; border-top:1px solid #678116;}
+#content_wrapper.ftmupgrade { background:url('../images/promo/ftm2011/header_img_upg.jpg') no-repeat right top; border-top:1px solid #678116;}
+#content_wrapper.easter2011 { background:url('../images/promo/ftm2011/header_easter2011.jpg') no-repeat right top; border-top:1px solid #678116;}
+#content_wrapper.summer2011 { background:url('../images/promo/header_summer2011.jpg') no-repeat right top; border-top:1px solid #678116;}
+.cert_box { background: url(../images/edgeward/fieldset_border_mid.png) repeat-x #FAF6D7; border:1px solid #B8AC92; padding:20px; margin-bottom:10px; width:auto; overflow:hidden; position:relative;}
+div.info_btm { width:auto; overflow:hidden; padding:20px 20px 0 20px;}
+div.col_a, div.col_b { display:inline; float:left;}
+div.col_a { width:500px; }
+div.col_b { width:376px; }
+div.pricing { padding:10px 0; width:auto; overflow:hidden;}
+#intro_content div.pricing { padding:25px 0;}
+
+
+/**** Fonts ****/
+
+p, a, del, td, th, dt, li, h3.border_top, strong, span { font-size: 12px; font-family:Tahoma, Arial, Helvetica, sans-serif; color:#333;}
+p, a, del, td, th, dt, h3.border_top, .lead_txt {  line-height:1.4em;}
+ul li { line-height:1.6em;}
+ul { list-style: disc inside; padding-bottom:.2em; overflow:hidden;}
+ol li { padding-bottom:.8em;}
+ul.main_features { background: url(../images/promo/ftm2010/ul_grad.png) repeat-x; width:440px; padding:10px;}
+strong, span, del, a { font-family:inherit; font-size:inherit; line-height:inherit; color:inherit; }
+a { color:#566C11;}
+a:hover { color:#789200; }
+strong {  font-weight:bold;}
+p, ul { padding-bottom:.6em;}
+.tab > p { padding-bottom:1.2em;}
+p.breadcrumb { padding:10px 0 0 0; font-size:11px;}
+.breadcrumb a { color:#4F630D;}
+p.pricing { color:#E98300; font-size:18px; font-weight:bold; display:inline; float:left; padding:0 20px;}
+h3, h3.order_today, .main_title, .info_btm p.ital, ol li, .order_today span, .lead_txt { font-family:Georgia, "Times New Roman", Times, serif; }
+.lead_txt, h3.order_today { font-size:18px; }
+h3.order_today { position:absolute; top:210px; left:536px; width:120px; color:#fff; text-align:center;}
+h3.border_top { 
+	height:26px; width:898px; font-size:18px; color:#fff; font-size:13px; font-weight:bold;  line-height:26px; padding:0 10px;
+	background: url(../images/promo/border-top-green.png) no-repeat
+}
+div.price_options h3 { color:#5D7513; font-size:18px; border-bottom:1px dotted #999; padding:0 0 10px 0;}
+.order_today span { font-size:42px; color:#fff;}
+.order_today span.ast { font-size:30px; color:#fff;}
+span.was, .pricing del { color:#83371F; font-size:14px;}
+span.was { padding:0 10px 0 0;}
+h2 { font-size:26px; width:500px; color:#5D7513;}
+.easter2011 h2 { font-size: 24px;}
+.summer2011 h2 { font-size: 24px;}
+.main_title { padding:20px 0;}
+.ftm2010_2 .main_title { border-bottom:1px dotted #999; margin-bottom:10px; width:440px;}
+.cert_box strong.title a { color:#556B11; text-decoration:none; }
+.cert_box strong.title a:hover, #index_info:hover { text-decoration:underline; }
+p.terms { color:#695E49; padding:20px; font-size:10px; clear:both;}
+p.terms strong { color:#695E49;}
+.cert_box ul li { background: url(../images/promo/bullet_leaf.png) no-repeat left center; padding-left:24px; line-height:2em; list-style: none;}
+.info_btm p.ital { font-style:italic; font-size:14px; color:#5D7513; display:inline; float:left; padding:3px 20px 3px 0;}
+#index_info { font-style:italic; color:#5D7513; text-decoration:none;}
+p.digi_copy { padding:10px; background:#fff; border:2px solid #CAD683; margin:20px 0 0 0; clear:both; width:480px; position:absolute; bottom:20px;}
+p.note { background: url(../images/promo/bullet_leaf_lrg.png) no-repeat left center; padding-left:40px; }
+.emph { font-size:120%;}
+p.cta { padding-top:1em; }
+.ftm2010_2 #tab_5 p.lead_txt { width:470px; }
+p.days_left { font-size:24px;}
+p.expires { padding-bottom:0;}
+p.expires, p.days_left { color:#9D022C; }
+.super { font-size:60%; vertical-align:super;}
+#ships_on { position:absolute; right:282px; top:395px; color:#68665F; }
+
+/* Table */
+table { padding:10px 0 0 0;}
+td, th { font-size:14px; width:180px;}
+th, td.std, td.disc  { font-weight:bold;}
+td { color:#656565;}
+td.std, td.std del { color:#83371F;}
+td.disc { color:#E98300;}
+
+/* Lists */
+ol { list-style:decimal outside; padding-bottom:1em; padding-left:30px;}
+ol li { font-size:21px; color:#5D7513;}
+ol p { display:inline;}
+
+/* Buttons */
+a.btn { display:inline; float:left;  height:28px;  text-indent:-9000px; }
+a.order_now { width:87px; background:url(../images/promo/btn_order_now.png) no-repeat; }
+a.search_now { width:94px; background:url(../images/promo/btn_search_now.png) no-repeat; }
+a.buy_now { width:82px; background:url(../images/promo/btn_buy_now.png) no-repeat; }
+a.start_search { width:149px; background:url(../images/promo/btn_start_search.png) no-repeat; }
+a.order_from { width:219px; background:url(../images/promo/btn_start_search.png) no-repeat -156px 0; }
+a.order_from, a.start_search { margin-left:20px;}
+a.btn:hover { background-position:0 -28px;}
+a.btn:active { background-position:0 -56px;}
+a.order_from:hover { background-position:-156px -28px; }
+a.order_from:active { background-position:-156px -28px; }
+p.price_btns { position:absolute; bottom:15px; right:20px; width:260px;}
+#tab_3 p.price_btns { width:340px; }
+a.big_buy_now { width:98px; background:url(../images/promo/ftm2010/big_buy_btn.png) no-repeat; height:44px; position:absolute; top:405px; right:312px;}
+a.big_buy_now:hover { background-position:0 -44px;}
+a.big_buy_now:active { background-position:0 -88px;}
+.ftm_mac a.big_buy_now { top:345px; }
+
+/**** Navigation Tabs *****/
+
+#nav { list-style:none; width:920px;  overflow:hidden; padding:0 20px; }
+#nav li { background:url('../images/promo/nav_li_right.png') no-repeat right top; display:inline; float:left; margin:0 0 0 4px; padding:0;}
+
+#nav a {
+	background:url('../images/promo/nav_li_left.png') no-repeat left top;
+	color:#776655; display:block;
+	float:left; font-weight:bold;
+	left:-4px; margin-right:-4px; padding:6px 20px;
+	position:relative; text-decoration:none;
+	/*width:0.1em;*/ border-bottom:1px solid #B8AC97;
+}
+#nav li > a { width:auto;}
+#nav a { float:none; color:#556B11; font-family:Tahoma; font-size:12px;}
+#nav a:hover { color:#333333;}
+#nav li:hover, #nav li:hover a, #nav li.current, #nav li.current a { background-position:100% -81px; color:#333333; }
+#nav li:hover a, #nav li.current a { background-position:0 -81px; border-bottom:1px solid #fff; }
+
+/**** Tab Boxes ****/
+
+.tab { 
+	border:1px solid #B8AC97; border-top:0; background:#fff; 
+	padding:20px 20px 10px 20px; overflow:hidden; position:relative; width:918px;
+}
+.inactive_tab { display:none;}
+div.tab_top { background:url('../images/promo/tab_top.png') no-repeat; height:4px; width:960px; }
+.ftm2010_2 .tab { background:url('../images/promo/ftm2010/ftm_tab_bg.png') no-repeat left bottom; padding-bottom:118px; }
+.ftm2011 .tab { background:url('../images/promo/ftm2011/tab_btm.png') no-repeat left bottom; padding-bottom:94px; }
+.ftmupgrade .tab { background-image:url('../images/promo/ftm2011/tab_btm_upg.png');  padding-bottom:104px;}
+.ftm2010_2 #tab_1, .ftm2011 #tab_1  { padding-bottom:40px; }
+.ftm_mac .tab { background:url('../images/promo/ftm2011_mac/tab_footer.jpg') no-repeat left bottom; padding-bottom:100px; min-height:300px;}
+
+/**** Product Images ****/
+
+ul.gallery li { background:url('../images/promo/bullet_arrow.png') no-repeat center top; padding:24px 0 10px 0; text-align:center; list-style: none;}
+ul.gallery li:first-child { background:none; padding:0 0 10px 0;  }
+ul.gallery li:last-child {  padding:24px 0 0 0;  }
+.gallery img { border:1px solid #B8AC92;}
+.gallery li a { display:block;}
+
+img.cert_img { float:right; border:1px solid #B8AC92;}
+
+.ftm2010_2 #tab_5 .prod_img, .ftm2011 .prod_img, .ftm_mac .prod_img { display:block; position:absolute;}
+#ss_1 { top:60px; right:150px;}
+#ss_2 { top:140px; right:20px;}
+#ss_3 { top:220px; right:270px;}
+.ftm2010_2 #tab_5 #ss_book, .ftm2011 #ss_main, .ftm_mac #ss_main  { display:block; position:relative; margin:20px 0 0 20px;}
+.ftm_mac #tab1_screen { padding:10px 0 0 40px; }
+
+/**** Reviews ****/
+
+.review { border-top:1px solid #DAD7C8; border-bottom:1px solid #fff; padding:20px 0; overflow:hidden; width:100%;}
+.first { border-top:0; padding-top:0; }
+.last { border-bottom:0; padding-bottom:0; }
+.review img { float:right;}
+.review p { float:left; width:80%;}
+#feat_review { background:#EFF2D3; border:1px solid #B8AC92; overflow:hidden; width:500px; padding:5px;}
+#feat_review img { width:35px; height:60px; display:inline; float:left; margin-right:20px;}
+#feat_review p { }
+.ftm2010_2 #feat_review  { background:#fff; border:0; padding:20px 5px 5px 5px; width:440px; }
+.ftm2010_2 #feat_review img { width:auto; height:auto;}
+
+/**** FAQ DL ****/
+
+dt { 
+	color:#556B11; font-size:13px; font-weight:bold; 
+	background: url(../images/edgeward/fieldset_border_mid.png) repeat-x #FAF6D7; 
+	border:1px solid #B8AC92; border-bottom:0;
+	padding:2px 10px; position:relative;
+}
+dt.open, dt:hover { background:#F7FAD7; cursor:pointer;}
+dt.open, dl { border-bottom:1px solid #B8AC92; }
+dd { background:#fff; padding:4px 10px; border-left:1px solid #B8AC92; border-right:1px solid #B8AC92; width:auto; overflow:hidden;}
+div.click_arrow { width:12px; height:7px; background: url(../images/promo/faq_arrows.png) no-repeat 0 -8px; position:absolute; right:10px; top:8px;  }
+dt.open div.click_arrow { background-position: 0 0;  }
+div.dd_wrapper { width:auto; overflow:hidden; }
+
+/**** Footer ****/
+#footer { padding:20px; border:1px solid #B8AC92; border-top:none; background:#F6F5EF; width:918px; margin:0 10px; overflow:hidden;}
+#footer_links, #other_sites, #cards { float:left; display:inline;}
+#footer_links { width:540px;}
+#other_sites { width:220px;}
+#cards { width:140px;}
+#footer_links a, #footer p { font-size:11px;  }
+#footer_links a, #other_sites_container a { color:#566C11;}
+#footer_links li { border-right:1px solid #D4D0C0; float:left; display:inline; padding: 0 8px;}
+#footer_links li.first { padding-left:0;}
+#footer_links li.last { padding-right:0; border:0;}
+#cards p, #other_sites p { text-align:center;}
+
+/**** Other sites popup ****/
+
+#other_sites_container { display:none; position:absolute; width:419px; overflow:hidden; z-index:10; bottom:110px; right:70px; }
+#other_sites_container .bg { background:#fff; overflow:hidden; width:417px; border-right:1px solid #B9AC92; border-left:1px solid #B9AC92;}
+#other_sites_container .col_left { float:left; width:188px; padding:10px; border-right: 1px solid #B9AC92;}
+#other_sites_container .col_right { float:right; width:188px; padding:10px; }
+#other_sites_container .top, #other_sites_container .btm, #closeFtrSitesX, .flags li, #other_sites_container h3, #other_sites_link  {  background-image:url(../images/layout/shop-sprite.png); background-repeat:no-repeat;}
+#other_sites_container .top { height:7px;}
+#other_sites_container .btm { background-position:0 -10px; height:10px;}
+#other_sites_container h3 { 
+	border-bottom:1px solid #8D7F61; 
+	color:#695D49; 
+	font-family:Georgia,"Times New Roman",Times,serif; 
+	font-size:15px; font-weight:normal; 
+	padding:4px 0 4px 20px; 
+	margin:5px 0; 
+	border-top:1px dotted #B3B3B3;
+	background-position:0 -46px;
+}
+#other_sites_link { color:#333; background-position:0 -87px; display:block; width:143px; height:23px; line-height:23px; text-decoration:none; padding:0 5px; margin:0 auto;}
+#closeFtrSitesX { background-position:0 -23px; height:16px; width:16px; display:block; text-indent:-9000px; position:absolute; top:4px; right:4px;}
+#other_sites_container .flags li { padding-left:25px;}
+#other_sites_container li a { font-size:13px; text-decoration:none;}
+#other_sites_container li a:hover { text-decoration:underline;}
+#other_sites_container li.us { background-position:-425px 5px;}
+#other_sites_container li.uk { background-position:-425px -15px;}
+#other_sites_container li.ca { background-position:-425px -34px;}
+#other_sites_container li.au { background-position:-425px -53px;}
+#other_sites_container li.de { background-position:-425px -72px;}
+#other_sites_container li.it { background-position:-425px -91px;}
+#other_sites_container li.fr { background-position:-425px -110px;}
+#other_sites_container li.se { background-position:-425px -129px;}
+#other_sites_container li.jp { background-position:-425px -148px;}
+
+/* Make border square on lightbox labels */
+div#fancy_title div { -moz-border-radius:0 !important; -webkit-border-radius:0 !important; }
+
+/* Misc */
+.clear { clear:both;}

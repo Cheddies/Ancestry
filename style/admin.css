@@ -1,0 +1,198 @@
+#admin_menu{
+	width:19%;
+	/*height:100%;*/
+	background-color:#EDEFCA;
+	border:1px solid #D7DD91;
+	float:left;
+	margin-right:1%;
+	display:inline;
+	font-size:0.8em;
+	min-height:100%;
+}
+
+* html #admin_menu{
+	height:100%;
+}
+
+
+#admin_menu h4{
+	color:#E6E4AB;
+	background:url('../images/h4_back.jpg');
+	margin:0;
+	padding-left:12px;
+	padding-top:2px;
+	padding-bottom:2px;
+}
+
+#admin_menu ul{
+	list-style:none;
+	margin:0;
+	padding:2px;
+	
+}
+#admin_menu ul li{
+	padding:2px;
+}
+
+#admin_menu a{
+	text-decoration:none;
+	font-weight:bold;
+}
+
+#admin_page{
+	float:left;
+	width:79%;
+}
+
+#admin_header{
+	width:100%;
+	display:block;
+	height:25px;
+	background:url('../images/dept_bar_back_blank.jpg');
+	text-transform: uppercase;
+	padding-top:5px;
+}
+
+#admin_header a{
+	color:#ffffff;
+	font-size:0.9em;
+	font-weight:bold;
+	text-decoration:none;
+}
+
+#admin_header h2{
+	font-weight:bold;
+}
+
+table{
+	width:100%;
+	text-align:left;
+}
+
+table th{
+	background-color:#89950F;
+	font-size: 12px;
+}
+
+td {
+	font-size: 12px;
+}
+
+p {
+	font-size: 12px;
+}
+
+.odd{
+	background-color:#EDEFCA;
+}
+.even{
+	background-color:#EAE4A8;
+}
+
+#order_details{
+	relative;font-size:62.5%
+}
+
+#status_bar{
+	width:100%;
+	display:block;
+	border:1px solid black;
+	height:20px;
+	margin-bottom:10px;
+	background-color:#89950F;
+	font-weight:bold;
+}
+
+#update_bar{
+	font-size:1.7em;	
+	padding-bottom:5px;
+	width:100%;
+	height:30px;
+	display:block;
+	clear:both;
+}
+
+#update_bar a{
+	background-color:#89950F;
+	/*height:25px;*/
+	border:1px solid black;
+	text-decoration:none;
+	padding:2px;
+	color:white;
+	float:left;
+	margin-left:2px;
+}
+
+#update_bar a:hover{
+	color:#EAE4A8;
+}
+
+#order_notes em{
+	color:black;
+}
+
+/**** added for banner admin *****/
+#logout{
+	float:right;
+	padding-top:40px;
+}
+
+#display_message{
+	width:100%;
+	background-color:#EAE4A8;
+	border:1px solid black;
+	padding:5px;
+	font-weight:bold;
+	margin-top:5px;
+	margin-bottom:5px;
+}
+
+#error{
+	color:red;
+}
+
+#banner_table{
+	width:100%;
+}
+
+#banner_table th{
+	color:white;
+}
+
+th#name{
+	width:50%;
+}
+th#weighting{
+	width:15%;
+}
+
+th#enabled{
+	width:10%;
+}
+
+th#view{
+	width:10%;
+}
+
+
+#login_box{
+	width:300px;
+	font-size:0.9em;
+	margin-top:5px;	
+}
+
+#login_box h4{
+	padding-top:5px;
+	padding-left:8px;
+}
+
+
+#login_box form {background-color:#EAE4A8; margin:0; padding:0;  border:1px solid black;}
+#login_box fieldset {width: 100%; margin: 0 auto; border:0; padding:0; padding-left:8px; padding-top:5px;}
+#login_box div.row {clear: both;}
+#login_box div.row label {float: left; width: 25%;}
+#login_box input {}
+#login_box div.row input_span {float: right; width: 50%;}
+#login_box div.row error {float: left; width: 100%;}
+#login_box div.row .go_button {float: right; margin-right:15px; margin-top:5px;}
+

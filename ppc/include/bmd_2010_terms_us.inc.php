@@ -1,0 +1,2 @@
+<p class="terms"><strong>Terms and conditions</strong><br/>
+* The <?php echo $discount['amount'];?>% discount is available for the purchase of any hardcopy birth, marriage and death certificates made during the offer period, the offer does not apply to Digital Certificates. The offer is valid from 00:01 (GMT) on <?php echo isset($tcDates) ? $tcDates[0] : '15th June 2010';?> until midnight GMT on <?php echo isset($tcDates) ? $tcDates[1] : 'July 15th';?>. This offer is open to US residents only and cannot be used in conjunction with any other offer.</p>

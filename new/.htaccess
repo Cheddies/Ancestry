@@ -1,0 +1,13 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On    
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^productdetail(.*)$ page_redir.php?url=productdetail$1 [QSA,L]
+    #RewriteRule ^(.*)_cert(.*)$ page_redir.php?url=$1_cert.php [L]
+    
+    RewriteRule ^products(.*)$ product_index.php?url=products$1 [QSA]
+    RewriteCond %{REQUEST_FILENAME}\.php -f
+	RewriteRule ^(.*)$ $1.php [L]
+    AddType application/x-javascript .js
+	AddType text/css .css
+</IfModule>
