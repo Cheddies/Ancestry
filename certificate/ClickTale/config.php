@@ -64,7 +64,7 @@ $config['AllowedAddresses'] = "75.125.82.64/26";
 // The location where cached files will be stored (works with FileSystem provider).
 //$config['CacheLocation'] = ClickTale_Root.ClickTale_DS."Cache";
 //$config['CacheLocation'] = "http://<username>:<password>@<host>:<port>/<db name>.<table name>";
-$config['CacheLocation'] = "http://clicktale:yEseguS4@78.31.106.175:3306/ancestry.tbl_clicktale";
+$config['CacheLocation'] = "http://clicktale:yEseguS4@db.ancestry.aws:3306/ancestry.tbl_clicktale";
 
 // Must be integers. Measured in megabytes.
 $config['MaxFolderSize'] = 50;

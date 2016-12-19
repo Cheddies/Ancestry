@@ -45,7 +45,7 @@ if  ( $_SERVER['HTTP_HOST']=="10.0.0.10"  || $_SERVER['HTTP_HOST']=="213.2.72.24
 }
 else
 {
-	define ('DB_HOST',"elmbaab3.memset.net");
+	define ('DB_HOST',"ancestry.cunnpkb38eda.eu-west-1.rds.amazonaws.com");
 	define ('DB_USER',"webuser");
 	define('DB_PASS',"steRahe9");
 	define ('DB_NAME',"ancestry");

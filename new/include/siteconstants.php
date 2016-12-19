@@ -27,7 +27,7 @@ elseif($_SERVER['HTTP_HOST']=="ancestry.internetlogistics.com")
 else
 {
 	//live
-	define ('DB_HOST',"elmbaab3.memset.net");
+	define ('DB_HOST',"ancestry.cunnpkb38eda.eu-west-1.rds.amazonaws.com");
 	define ('DB_USER',"webuser");
 	define('DB_PASS',"steRahe9");
 	define ('DB_NAME',"ancestry");
