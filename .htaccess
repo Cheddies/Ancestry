@@ -1,7 +1,8 @@
-<IfModule mod_rewrite.c>
 RewriteEngine On
+RewriteRule ^flibble.html$ bibble.html
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
+
 # Old URLs to be redirected
 RewriteRule ^BMD_cert(.*)$ page_redir.php?url=bmd_cert.php [NC,QSA,L]
 RewriteRule ^birth_cert(.*)$ page_redir.php?url=birth_cert.php [NC,QSA,L]
@@ -49,5 +50,4 @@ RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^(.*)$ $1.php [L]
 AddType application/x-javascript .js
 AddType text/css .css
-</IfModule>
 

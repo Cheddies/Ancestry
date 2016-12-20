@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL ^ E_DEPRECATED);
 require_once("include/siteconstants.php");
 require_once("include/commonfunctions.php");
 //Generate a unique token

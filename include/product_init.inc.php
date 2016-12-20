@@ -1,5 +1,4 @@
 <?php
-
 setReporting();
 removeMagicQuotes();
 unregisterGlobals();
@@ -12,7 +11,8 @@ if (DEVELOPMENT_ENVIRONMENT == true) {
 	error_reporting(E_ALL & ~E_NOTICE);
 	ini_set('display_errors','On');
 } else {
-	error_reporting(E_ALL & ~E_NOTICE);
+	error_reporting(E_ALL ^ E_DEPRECATED);
+	//error_reporting(E_ALL & ~E_NOTICE);
 	ini_set('display_errors','Off');
 	ini_set('log_errors', 'On');
 	ini_set('error_log', ROOT.DS.'tmp'.DS.'logs'.DS.'error.log');
@@ -189,6 +189,7 @@ function initPage() {
 /** Get products **/
 
 function loadProducts($deptSlug, $prodSlug=null, $search=false){
+	error_reporting(E_ALL ^ E_DEPRECATED);
 	$link = mysql_connect(DB_HOST, DB_USER, DB_PASS) or die('Could not connect: ' . mysql_error());
 	mysql_select_db(DB_NAME) or die('Could not select database');
 	$select = "SELECT DISTINCT
