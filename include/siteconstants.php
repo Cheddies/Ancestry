@@ -33,7 +33,8 @@ else
 	define ('DB_USER',"webuser");
 	define('DB_PASS',"steRahe9");
 	define ('DB_NAME',"ancestry");
-	define ('SECURE_TRADING_ACCOUNT','elmancestry11634');
+	//define ('SECURE_TRADING_ACCOUNT','elmancestry11634');
+	define ('SECURE_TRADING_ACCOUNT','testelmbank9808');
 	define('WEBROOT', '/');
 }
 
