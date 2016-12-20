@@ -1,0 +1,53 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+# Old URLs to be redirected
+RewriteRule ^BMD_cert(.*)$ page_redir.php?url=bmd_cert.php [NC,QSA,L]
+RewriteRule ^birth_cert(.*)$ page_redir.php?url=birth_cert.php [NC,QSA,L]
+RewriteRule ^marriage_cert(.*)$ page_redir.php?url=marriage_cert.php [NC,QSA,L]
+RewriteRule ^death_cert(.*)$ page_redir.php?url=death_cert.php [NC,QSA,L]
+RewriteRule ^surname_book(.*)$ page_redir.php?url=surname_book.php [NC,QSA,L]
+RewriteRule ^surnamebook(.*)$ page_redir.php?url=surname_book.php [NC,QSA,L]
+RewriteRule ^productdetail(.*)$ page_redir.php?url=productdetail$1 [NC,QSA,L]
+RewriteRule ^freeupgrade(.*)$ page_redir.php?url=freeupgrade [NC,QSA,L]
+RewriteRule ^ftm$ page_redir.php?url=ftm [NC,QSA,L]
+# End old URLs
+# PPC and email marketing URLs
+RewriteRule ^christmas$ landing/christmas.php [NC,QSA,L]
+RewriteRule ^christmasdelivery$ landing/christmasdelivery.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2012-june$ landing/ftm2012_landing_june.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2012-world-edition-spring$ landing/family-tree-maker-world-spring.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-mac-easter$ landing/family-tree-maker-mac-easter.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2012-easter-offer$ landing/ftm2012_landing_easter_12.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2012-30-offer$ landing/ftm2012_landing_0312.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-mac-offer$ landing/family-tree-maker-mac-offer.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-mac-upgrade$ landing/family-tree-maker-mac-upgrade.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-mac-presale$ landing/family-tree-maker-mac-presale.php [NC,QSA,L]
+RewriteRule ^products/software/family-tree-maker-2012-upgrade-offer$ landing/ftm_landing_upgrade.php [NC,QSA,L]
+RewriteRule ^products/software/family-tree-maker-2012-presale-offer$ landing/ftm_landing_presale.php [NC,QSA,L]
+RewriteRule ^products/software/family-tree-maker-2012-platinum-edition$ landing/family-tree-maker-2012-platinum-edition.php [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2011-platinum-edition$ ppc/ftm2011_presale [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2011-upgrade-edition$ ppc/ftm2011_upgrade [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-mac-edition$ ppc/ftm2011_mac [NC,QSA,L]
+RewriteRule ^software/family-tree-maker-2010-0_xid$ ppc/ftm2010_2 [NC,QSA,L]
+RewriteRule ^easter-offer$ ppc/ftm2010-easter-2010 [NC,QSA,L]
+RewriteRule ^easter-last-chance$ ppc/ftm2010-easter-2010-end [NC,QSA,L]
+RewriteRule ^bmdoffer(.*)$ ppc/bmd2010-discount.php?url=bmdoffer$1 [NC,QSA,L]
+RewriteRule ^aubmdoffer(.*)$ ppc/bmd2010-discount.php?url=aubmdoffer$1 [NC,QSA,L]
+RewriteRule ^cabmdoffer(.*)$ ppc/bmd2010-discount.php?url=cabmdoffer$1 [NC,QSA,L]
+RewriteRule ^usbmdoffer(.*)$ ppc/bmd2010-discount.php?url=usbmdoffer$1 [NC,QSA,L]
+RewriteRule ^easter-2011-offer$ ppc/ftm2011-easter-2011 [NC,QSA,L]
+RewriteRule ^summer-2011-offer$ ppc/ftm2011-summer-2011 [NC,QSA,L]
+RewriteRule ^ftm2011$ ppc/ftm2011 [NC,QSA,L]
+RewriteRule ^xmas$ products/sale [NC,QSA,L]
+# end PPC
+RewriteRule ^backtoschool$ landing/bts_0911.php [NC,QSA,L]
+RewriteRule ^backtoschool(.*)$ landing/backtoschool.php?camp=$1 [NC,QSA,L]
+RewriteRule ^products(.*)$ product_index.php?url=products$1 [NC,QSA,L]
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^(.*)$ $1.php [L]
+AddType application/x-javascript .js
+AddType text/css .css
+</IfModule>
+
