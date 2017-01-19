@@ -35,6 +35,8 @@ function selectYearCreator($selectname) {
 	$options = $options . "<option>2014</option>";
 	$options = $options . "<option>2015</option>";
 	$options = $options . "<option>2016</option>";
+	$options = $options . "<option>2017</option>";
+	$options = $options . "<option>2018</option>";
 	
 	$end_statement = "</select>";
 
