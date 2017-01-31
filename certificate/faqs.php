@@ -1,6 +1,27 @@
-<?php include ('include/header.php');
+<?php
 require_once('include/edgeward/global_functions.inc.php');
-$order = isset($_SESSION['cert']) ? $_SESSION['cert'] : array();
+
+include_once('include/check_https.inc.php');
+
+?>
+<?php
+//get new session id
+if(isset($_SESSION['cert'])){
+        session_regenerate_id(true);
+}
+
+//dont include JS
+$no_js = 1;
+$omniture_pageTitle = "Ancestry Shop Certificates";
+?>
+<?php
+//if($layout['set'] >1){
+if(1 == 1){
+        require_once('include/edgeward/new_bmd/header.inc.php');
+} else {
+        require_once('include/edgeward/header.inc.php');
+}
+
 ?>
 <div id="content_page">
 <h2>FAQs</h2>

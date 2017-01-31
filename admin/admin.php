@@ -7,7 +7,7 @@
 	$CurrentYear=date("Y");
 	$CurrentMonth=date("m");
 	$CurrentDay=date("d");
-	
+
 	//Work out the start and end dates of this month
 	$DayofWeek=date("w");//0=sun, 6=sat
 	$DaysfromStart=$DayofWeek;
@@ -26,7 +26,7 @@
 	// Connecting, selecting database
 	$link = mysql_connect(DB_HOST,DB_USER,DB_PASS) or die('Could not connect: ' . mysql_error());
 	mysql_select_db(DB_NAME) or die('Could not select database');
-
+	
 	// Performing SQL query to get current stats on day,month,year
 	
 	$mysql['CurrentYear']=mysql_real_escape_string($CurrentYear,$link);
@@ -37,7 +37,7 @@
 	$mysql['sEndofWeek']=mysql_real_escape_string($sEndofWeek,$link);
 	//get orders today and count them
 	$query = "SELECT order_date  FROM tbl_order_header WHERE order_date = '{$mysql['CurrentYear']}-{$mysql['CurrentMonth']}-{$mysql['CurrentDay']}' AND authorised=1;";
-	
+print_r($query);	
 	//query to get details from order_header
 	
 	$result = mysql_query($query) or die('Query failed: ' . mysql_error());

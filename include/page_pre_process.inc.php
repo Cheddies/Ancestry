@@ -32,6 +32,7 @@ $mysql=array();
 
 if(isset($_SERVER['PHP_SELF']) && !$Page)
 {
+$Page;
 	$Page=basename($_SERVER['PHP_SELF']);
 	$Page=substr($Page,0,strlen($Page)-4);
 }

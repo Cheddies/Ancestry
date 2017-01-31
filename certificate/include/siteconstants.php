@@ -30,7 +30,8 @@ else
 	define ('DB_USER',"webuser");
 	define('DB_PASS',"steRahe9");
 	define ('DB_NAME',"ancestry");
-	define ('SECURE_TRADING_ACCOUNT','elmancestry11634');
+	define ('SECURE_TRADING_ACCOUNT','elmancestry27200');
+// TEST ACCOUNT	define ('SECURE_TRADING_ACCOUNT','test_elmancestry32377');
 }
 
 require_once ("db_session.php");
