@@ -13,7 +13,7 @@ if( $_SERVER['HTTP_HOST']== 'www.ancestryshop.co.uk' || $_SERVER['HTTP_HOST']== 
 	//if not set, then use the one from IL header $title
 	if(!isset($pageTitle))
 	{
-		$pageTitle=$title;
+//		$pageTitle=$title;
 	}
 	
 	if  ( (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS']=='on'))
