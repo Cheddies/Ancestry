@@ -24,7 +24,8 @@ elseif($_SERVER['HTTP_HOST']=="ancestry.internetlogistics.com")
 }
 else
 {
-	define('NEW_SECURE_TRADING_ACCOUNT','elmancestry27200');
+	//define('NEW_SECURE_TRADING_ACCOUNT','elmancestry27200');
+	define('NEW_SECURE_TRADING_ACCOUNT','test_elmancestry32377');
 }
 
 define('NEW_SECURE_TRADING_SECURITY_PASSWORD_OUTGOING','d6UHecaprehabrEbA4h958Fu7ruca8re');

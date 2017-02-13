@@ -3,29 +3,29 @@
 //DB stuff
 //live
 
-if  ( $_SERVER['HTTP_HOST']=="10.0.0.10"  || $_SERVER['HTTP_HOST']=="213.2.72.242" || $_SERVER['HTTP_HOST']=="10.0.0.136") 
-{
-	//test
-	define ('DB_HOST',"10.0.0.136");
-	define ('DB_USER',"webuser2");
-	define('DB_PASS',"v7UtHOes");
-	define ('DB_NAME',"ancestry_test");
-	define ('SECURE_TRADING_ACCOUNT','testelmbank9808');
-	define('WEBROOT', '/new_ancestry/');
-	
-}
-elseif($_SERVER['HTTP_HOST']=="ancestry.internetlogistics.com")
-{
-	define ('DB_HOST',"localhost");
-	define ('DB_USER',"webuser");
-	define('DB_PASS',"?A_AnUY@7e");
-	define ('DB_NAME',"ancestry");
-	define ('SECURE_TRADING_ACCOUNT','testelmbank9808');
-	define('WEBROOT', '/');
+//if  ( $_SERVER['HTTP_HOST']=="10.0.0.10"  || $_SERVER['HTTP_HOST']=="213.2.72.242" || $_SERVER['HTTP_HOST']=="10.0.0.136") 
+//{
+//	//test
+///	define ('DB_HOST',"10.0.0.136");
+//	define ('DB_USER',"webuser2");
+//	define('DB_PASS',"v7UtHOes");
+//	define ('DB_NAME',"ancestry_test");
+//	define ('SECURE_TRADING_ACCOUNT','testelmbank9808');
+//	define('WEBROOT', '/new_ancestry/');
+//	
+//}
+//elseif($_SERVER['HTTP_HOST']=="ancestry.internetlogistics.com")
+//{
+//	define ('DB_HOST',"localhost");
+//	define ('DB_USER',"webuser");
+//	define('DB_PASS',"?A_AnUY@7e");
+//	define ('DB_NAME',"ancestry");
+//	define ('SECURE_TRADING_ACCOUNT','testelmbank9808');
+//	define('WEBROOT', '/');
 
-}
-else
-{
+//}
+//else
+//{
 	//live
 	//define ('DB_HOST',"ancestry.cunnpkb38eda.eu-west-1.rds.amazonaws.com");
 	//define ('DB_HOST',"78.31.106.175");
@@ -34,9 +34,10 @@ else
 	define('DB_PASS',"steRahe9");
 	define ('DB_NAME',"ancestry");
 	//define ('SECURE_TRADING_ACCOUNT','elmancestry11634');
-	define ('SECURE_TRADING_ACCOUNT','testelmbank9808');
+	define ('SECURE_TRADING_ACCOUNT','elmancestry32377');
+	
 	define('WEBROOT', '/');
-}
+//}
 
 
 /*

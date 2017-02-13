@@ -200,5 +200,5 @@ $NumRows = mysql_num_rows($result);
 	</body>
 </html>
 <?php
-}
+};
 ?>
