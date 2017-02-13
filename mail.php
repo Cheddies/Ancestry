@@ -1,5 +1,5 @@
 <?php
-$to = "dbowett@googlemail.com";
+$to = "eddie@redsnapper.net";
 $subject = "Hi!";
 $body = "Hi,\n\nHow are you?";
 if (mail($to, $subject, $body)) {

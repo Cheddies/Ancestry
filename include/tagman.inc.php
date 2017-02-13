@@ -32,12 +32,12 @@ if($currentPage == '/' || $currentPage == '/index'){
 	var tmPageId = 14;
 	// base container id
 	var tmAddJs = 1;
-	var tmBaseUrl = "http://pfa.levexis.com/ancestry/tagman.cgi";
+	var tmBaseUrl = "//pfa.levexis.com/ancestry/tagman.cgi";
 	// base url â€“ only specified for full TagMan Clients
 	</script>
-	<script type="text/javascript" src="http://res.levexis.com/clientfiles/tmap/ancestry.js"></script>
-	<script type="text/javascript" src="http://res.levexis.com/js/tman.js"></script>
-	<noscript><iframe src="http://res.levexis.com/clientfiles/default/14/ancestry.htm"
+	<script type="text/javascript" src="//res.levexis.com/clientfiles/tmap/ancestry.js"></script>
+	<script type="text/javascript" src="//res.levexis.com/js/tman.js"></script>
+	<noscript><iframe src="//res.levexis.com/clientfiles/default/14/ancestry.htm"
 	style="border:0px none ; width: 0px; height:
 	0px;"></iframe></noscript>';
 } elseif($confirmPage){
