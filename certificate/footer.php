@@ -18,7 +18,7 @@
 </div>
 <div id="shop_footer">
 <p><a href="/aboutus" onclick="s_objectID='corp_foot'">About Us</a>&nbsp;&nbsp;<a href="customer_service.php?#contact" onclick="s_objectID='contact_foot'" >Contact Us</a></p>
-			<p class="tnclinks">&copy;&nbsp;2016,&nbsp;Ancestry.com &nbsp;
+			<p class="tnclinks">&copy;&nbsp;2017,&nbsp;Ancestry.com &nbsp;
 				<a id="ctl08_ctl00_m_privacy" onclick="s_objectID='privacy_foot'" href="privacy_policy.php">Privacy Policy</a> | <a id="ctl08_ctl00_m_terms" onclick="s_objectID='terms_foot'" href="tcs.php">Terms and Conditions</a>
 			</p>
 			
