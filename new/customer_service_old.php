@@ -7,8 +7,8 @@
 				<a name="top"><h2>Select a Topic</h2></a>
 <ul id="cservice_menu">
 	<li><a href="customer_service#contact">Contact Us</a></li>
-	<li><a href="customer_service#ship">Dispatch/Delivery</a></li>
 	<li><a href="customer_service#tracking">Order Tracking</a></li>
+	<li><a href="customer_service#ship">Dispatch/Delivery</a></li>
 	<li><a href="customer_service#payment">Payment Options</a></li>
 	<li><a href="customer_service#vat">VAT</a></li>
 	<li><a href="customer_service#returns">Returns</a></li>
@@ -20,8 +20,8 @@
 	<h4>By Phone</h4>
 	
 	<p>
-		0345 688 5114<br />
-		Hours 0900 - 1700 <br />
+		0845 688 5114<br />
+		Hours 0800 - 1800 <br />
 		Monday - Friday
 	</p>
 </div>
@@ -44,7 +44,6 @@
 <p><a href="#top" class="back_to_top">Back To Top</a></p>
 <a name="ship"><h2>Dispatch/Delivery</h2></a>
 
-<p>Unless otherwise stated, the following delivery times and costs will occur:</p>
 <p><table summary="Delivery Times and Charges">
 			<tr> 
 				<th  colspan="3">Within the UK</td>
@@ -75,16 +74,17 @@
 
 <a name="tracking"><h2>Order Tracking</h2></a>
 <p>
-	Please <a href="#top" class="back_to_top">contact</a> or <a href="mailto:service@ancestryshop.co.uk">email</a> our customer services department to track your order.
+	Please <a href="customer_service#contact">contact</a> our customer services department to track your order.
 </p>
 <p><a href="#top" class="back_to_top">Back To Top</a></p>
 
 <a name="payment"><h2>Payment Options</h2></a>
 <p>
-	We accept Visa, MasterCard, Delta, Solo, UK Maestro cards as payment.
+	We accept Visa, MasterCard, Delta, Solo, UK Maestro cards and UKASH as payment.
 </p>
 <p>
 	<img src="images/layout/cards.png" alt="Visa, Mastercard, Delta, Solo, Maestro, Visa Electron" />
+	<img src="images/UKash.gif" alt="UKash Icon" />
 
 </p>
 <p><a href="#top" class="back_to_top">Back To Top</a></p>
@@ -101,16 +101,16 @@ The Value Added Tax is included in the price of the goods.
 It is important to us that you are satisfied with your Ancestry Shop experience. If you are not completely satisfied with our goods you have the right to cancel your order up to 21 days after receipt of your product and receive a full order refund or exchange.  Details of your right to cancel the contract, returns and refunds can be found  <a href="tcs#returns">here</a>.
 </p>
 <p>
-If you would like to return an item please contact us on 0345 688 5114 or email <a href="mailto:service@ancestryshop.co.uk">service@ancestryshop.co.uk</a> or fill in and return to us this <a href="http://www.ancestryshop.co.uk/include/Return_Form.pdf" target="_blank">form</a>. We will provide you with a return authorisation which will speed up your return and refund process.  To process a return, please follow the steps below:
+If you would like to return an item please contact us on 0845 688 5114 or email <a href="mailto:service@ancestryshop.co.uk">service@ancestryshop.co.uk</a> where we will be able to provide you with a return authorisation which will speed up your return and refund process.  To process a return, please follow the steps below:
 <br />
 <ul>
-<li>1. Complete downloaded form and / or the return section on your order's packing slip</li>
+<li>1. Complete the return section on your order's packing slip</li>
 <li>2. Secure merchandise in original packaging if available and enclose the return form</li>
 <li>3. Return merchandise in "as new" condition by pre-paid mail</li>
 </ul>
 </p>
 <p>
-We will make all refunds to the card used for payment as soon as possible within 14 days of the date of cancellation.  This "Returns and refunds" policy does not take away any rights you may have under consumer law.
+We will make all refunds to the card used for payment as soon as possible which we would expect to be within 30 days of the date of cancellation.  This "Returns and refunds" policy does not take away any rights you may have under consumer law.
 </p>
 <p><a href="#top" class="back_to_top">Back To Top</a></p>
 		</div>
