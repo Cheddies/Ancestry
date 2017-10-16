@@ -21,7 +21,7 @@
 	
 	<p>
 		0845 688 5114<br />
-		Hours 0800 - 1700 <br />
+		Hours 0800 - 1800 <br />
 		Monday - Friday
 	</p>
 </div>
@@ -34,12 +34,11 @@
 <div class="c3">
 	<h4>By Post</h4>
 	<p>
-		Ancestry Shop<br />
-		c/o Core Fulfilment<br />
-		Orion Way<br />
-		Crewe<br />
+		Ancestry Shop <br />
+		PO Box 150<br />
+		Sandbach<br />
 		Cheshire<br />
-		CW1 6NG<br />
+		CW11 3WB<br />
 	</p>
 </div>
 <p><a href="#top" class="back_to_top">Back To Top</a></p>
