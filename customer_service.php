@@ -21,7 +21,7 @@
 	
 	<p>
 		0345 688 5114<br />
-		Hours 0900 - 1700 <br />
+		Hours 0900 - 1700<br />
 		Monday - Friday
 	</p>
 </div>
@@ -34,7 +34,7 @@
 <div class="c3">
 	<h4>By Post</h4>
 	<p>
-		Ancestry Shop <br />
+		Ancestry Shop<br />
 		PO Box 150<br />
 		Sandbach<br />
 		Cheshire<br />
