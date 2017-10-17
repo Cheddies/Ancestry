@@ -37,8 +37,7 @@
 		Ancestry Shop<br />
 		c/o Core Fulfilment<br />
 		Orion Park, Orion Way<br />
-		Crewe<br />
-		Cheshire<br />
+		Crewe, Cheshire<br />
 		CW1 6NG<br />
 	</p>
 </div>
