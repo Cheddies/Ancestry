@@ -44,8 +44,10 @@ $disableAddress = false;
 <div class="fieldset_border"> 
 
 <div class="input checktc">
-<label for="tc1">Ancestry may contact you by email with updates, special offers and other information about Ancestry related products and services. By providing us with your email address and clicking 'continue' below, you consent to being contacted by email. If you do not want to receive marketing information from Ancestry by email, please un-tick this box.</label>    
-<input name="noemail" type="checkbox" id="noemail" checked="checked" class="noval" value="1"/>
+<!--<label for="tc1">Ancestry may contact you by email with updates, special offers and other information about Ancestry related products and services. By providing us with your email address and clicking 'continue' below, you consent to being contacted by email. If you do not want to receive marketing information from Ancestry by email, please un-tick this box.</label>    
+<input name="noemail" type="checkbox" id="noemail" checked="checked" class="noval" value="1"/>-->
+<label for="tc1">If you would like Ancestry to contact you by email with updates, special offers and other information about Ancestry related products and services please tick this box.  By ticking this box and pressing continue, you consent to being contacted by email.</label>    
+<input name="noemail" type="checkbox" id="noemail" class="noval" value="1"/>
 </div>
 <div class="input checktc">
 <label for="tc2">Carefully selected partners and/or suppliers of Ancestry may contact you by email about family history and related products and services, special offers and promotions.<br/>
