@@ -7,7 +7,7 @@
     <div class="nf-contact">
     	<p>If you have any questions then don't hesitate to call us on</p>
         <span class="nf-tel">0345 688 5114</span><br />
-        <p>0900 - 1800 UK GMT</p>
+        <p>0900 - 1700 UK GMT</p>
     </div>
     <div class="nf-pay">
     	<p><span class="nf-paytitle">Many ways to pay</span></p>
@@ -18,8 +18,9 @@
 </div>
 <div id="shop_footer">
 <p><a href="/aboutus" onclick="s_objectID='corp_foot'">About Us</a>&nbsp;&nbsp;<a href="customer_service_aus.php?#contact" onclick="s_objectID='contact_foot'" >Contact Us</a></p>
-			<p class="tnclinks">&copy;&nbsp;2016,&nbsp;Ancestry.com &nbsp;
-				<a id="ctl08_ctl00_m_privacy" onclick="s_objectID='privacy_foot'" href="http://www.ancestryshop.co.uk/privacy_policy.php">Privacy Policy</a> | <a id="ctl08_ctl00_m_terms" onclick="s_objectID='terms_foot'" href="http://www.ancestryshop.co.uk/tcs.php">Terms and Conditions</a>
+			<p class="tnclinks">&copy;&nbsp;2018,&nbsp;Ancestry.com &nbsp;
+				<!--<a id="ctl08_ctl00_m_privacy" onclick="s_objectID='privacy_foot'" href="http://www.ancestryshop.co.uk/privacy_policy.php">Privacy Policy</a> | <a id="ctl08_ctl00_m_terms" onclick="s_objectID='terms_foot'" href="http://www.ancestryshop.co.uk/tcs.php">Terms and Conditions</a>-->
+				<a id="ctl08_ctl00_m_privacy" onclick="s_objectID='privacy_foot'" href="https://www.ancestry.co.uk/cs/legal/privacystatement" title="Privicy Statement" target="_blank">Privacy Policy</a> | <a id="ctl08_ctl00_m_terms" onclick="s_objectID='terms_foot'" href="https://www.ancestry.co.uk/cs/legal/termsandconditions" title="Terms and Conditions" target="_blank">Terms and Conditions</a>
 			</p>
 			
 				<div class="genlinkdiv">
