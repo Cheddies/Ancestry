@@ -7,7 +7,7 @@
     <div class="nf-contact">
     	<p>If you have any questions then don't hesitate to call us on</p>
         <span class="nf-tel">0345 688 5114</span><br />
-        <p>0900 - 1800 UK GMT</p>
+        <p>0900 - 1700 UK GMT</p>
     </div>
     <div class="nf-pay">
     	<p><span class="nf-paytitle">Many ways to pay</span></p>
