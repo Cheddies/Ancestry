@@ -24,7 +24,7 @@
 				<h3><a href="<?php echo WEBROOT;?>products/birth-marriage-death-certificates">Birth, Marriage &amp; Death Certificates</a></h3>
 				<p class="prod_desc">Order an official England or Wales Birth, Marriage and Death Certificate online. <a href="<?php echo WEBROOT;?>products/birth-marriage-death-certificates">Read more...</a></p>
 			</div>
-			<p class="prod_price">From &pound;22.99</p>
+			<p class="prod_price">From &pound;24.99</p>
 		</div>
 		
 		<div class="prod_box grid_3 omega">
