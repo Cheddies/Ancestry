@@ -18,7 +18,7 @@
 </div>
 <div id="shop_footer">
 <p><a href="/aboutus" onclick="s_objectID='corp_foot'">About Us</a>&nbsp;&nbsp;<a href="customer_service_can.php?#contact" onclick="s_objectID='contact_foot'" >Contact Us</a></p>
-			<p class="tnclinks">&copy;&nbsp;2018,&nbsp;Ancestry.com &nbsp;
+			<p class="tnclinks">&copy;&nbsp;2019,&nbsp;Ancestry.com &nbsp;
 				<!--<a id="ctl08_ctl00_m_privacy" onclick="s_objectID='privacy_foot'" href="http://www.ancestryshop.co.uk/privacy_policy.php">Privacy Policy</a> | <a id="ctl08_ctl00_m_terms" onclick="s_objectID='terms_foot'" href="http://www.ancestryshop.co.uk/tcs.php">Terms and Conditions</a>-->
 				<a id="ctl08_ctl00_m_privacy" onclick="s_objectID='privacy_foot'" href="https://www.ancestry.co.uk/cs/legal/privacystatement" title="Privicy Statement" target="_blank">Privacy Policy</a> | <a id="ctl08_ctl00_m_terms" onclick="s_objectID='terms_foot'" href="https://www.ancestry.co.uk/cs/legal/termsandconditions" title="Terms and Conditions" target="_blank">Terms and Conditions</a>
 			</p>
